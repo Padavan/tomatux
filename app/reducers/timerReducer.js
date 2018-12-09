@@ -2,17 +2,21 @@ import * as types from '../actions';
 // import initialState from './initialState';
 
 const initialState = {
-  pomodoro: 1500,
-  pause: 300,
+  time: 10,
+  running: false,
 };
 
-export default (state = 0, action) => {
+const timer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
+    case 'TIMER_START':
+      return { ...state, running: true };
+    case 'TIMER_TICK':
+      return { ...state, time: state.time - 1 };
+    case 'TIMER_STOP':
+      return { ...state, running: false };
     default:
-      return state
+      return state;
   }
-}
+};
+
+export default timer;
