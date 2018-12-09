@@ -4,7 +4,6 @@ import timer from './timerReducer';
 import settings from './settingsReducer';
 
 const rootReducer = combineReducers({
-  // short hand property names
   timer,
   settings
 });
