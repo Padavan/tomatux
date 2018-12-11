@@ -19,7 +19,7 @@ const stop = () => {
 
 const prepareTimerAction = () => (dispatch, getState) => {
   const { logic, settings } = getState();
-  dispatch(setTimer(settings[logic.current]));
+  dispatch(setTimer(settings[logic.current] * 60));
 };
 
 const loopEnd = () => (dispatch, getState) => {
@@ -56,7 +56,7 @@ const checkTick = () => (dispatch, getState) => {
   }
 };
 
-const start = () => (dispatch) => {
+export const startLoopAction = () => (dispatch) => {
   clearInterval(timerLoop);
   timerLoop = setInterval(() => dispatch(checkTick()), 1000);
   dispatch({ type: 'TIMER_START' });
@@ -69,39 +69,25 @@ const changeSettings = option => ({
 });
 
 export const updateSettingsAction = option => (dispatch, getState) => {
+  dispatch(changeSettings(option));
   const { timer } = getState();
   if (!timer.running) {
     dispatch(prepareTimerAction());
   }
-  dispatch(changeSettings(option));
 };
 
 export const restoreSettings = () => ({
   type: 'SETTINGS_RESTORE'
 });
 
-export const startLoopAction = () => (dispatch) => {
-  dispatch(start());
-  return ({
-    type: 'START_LOOP'
-  });
-};
-
-export const stopLoopAction = () => (dispatch, getState) => {
+export const stopLoopAction = () => (dispatch) => {
   dispatch(stop());
-  const { pomodoro } = getState().settings;
-  dispatch(setTimer(pomodoro));
-  return ({
-    type: 'STOP_LOOP'
-  });
+  dispatch(prepareTimerAction());
 };
 
 export const skipPauseAction = () => (dispatch) => {
   dispatch(loopEnd());
-  dispatch(start());
-  return ({
-    type: 'START_LOOP'
-  });
+  dispatch(startLoopAction());
 };
 
 export const dontCountAction = () => (dispatch, getState) => {

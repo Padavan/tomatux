@@ -8,7 +8,7 @@ import { loadState } from '../localStorage';
 
 const initialSettingsState = loadState();
 const initialTimerState = {
-  time: initialSettingsState ? initialSettingsState.settings.pomodoro : 25,
+  time: initialSettingsState * 60 ? initialSettingsState.settings.pomodoro : 25 * 60,
   running: false,
 };
 
