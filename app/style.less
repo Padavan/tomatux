@@ -117,6 +117,7 @@ main {
 
 section {
   max-width: 400px;
+  margin: 1rem 0;
   align-self: center;
 }
 
@@ -127,5 +128,15 @@ label {
   }
 }
 
+button {
+  height: 2rem;
+  min-width: 6rem;
+  background-color: white;
+  border: 2px solid #363640;
+  &.disabled, &:disabled {
+    border: 2px solid #5e5e66;
+    background-color: #fafafa;
+  }
+}
 
 // #363640 dark grey

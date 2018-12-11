@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeSettings, restoreSettings } from '../actions';
+import { updateSettingsAction, restoreSettings } from '../actions';
 import { saveState } from '../localStorage';
 
 const hoomanNames = {
-  pomodoroDuration: 'Duration of pomodoro',
-  pauseDuration: 'Duration of pause',
-  longPauseDuration: 'Duration of long pause',
-  loopCount: 'Number of pomodoro loops before long pause'
+  pomodoro: 'Duration of pomodoro',
+  pause: 'Duration of pause',
+  long: 'Duration of long pause',
+  loop: 'Number of pomodoro loops before long pause'
 };
 
-const Settings = ({ settings, handleData, restoreSettings }) => (
+const Settings = ({ settings, handleData, restoreDefault }) => (
   <section>
     {Object.keys(settings).map(option => (
       <label key={option} htmlFor={option}>
@@ -24,7 +24,7 @@ const Settings = ({ settings, handleData, restoreSettings }) => (
     <b> Enable / Disable </b>
     <div>
       <button onClick={() => saveState({ settings })}> Save </button>
-      <button onClick={() => restoreSettings()}> Restore default </button>
+      <button onClick={() => restoreDefault()}> Restore default </button>
     </div>
   </section>
 );
@@ -35,9 +35,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleData(option) {
-    dispatch(changeSettings(option));
+    dispatch(updateSettingsAction(option));
   },
-  restoreSettings() {
+  restoreDefault() {
     dispatch(restoreSettings());
   }
 });

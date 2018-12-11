@@ -1,8 +1,15 @@
+// const initialState = {
+//   pomodoro: 25,
+//   pause: 5,
+//   long: 10,
+//   loop: 4
+// };
+
 const initialState = {
-  pomodoroDuration: 25,
-  pauseDuration: 5,
-  longPauseDuration: 10,
-  loopCount: 4
+  pomodoro: 25,
+  pause: 5,
+  long: 10,
+  loop: 4
 };
 
 const settings = (state = initialState, action) => {
