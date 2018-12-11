@@ -95,3 +95,17 @@ export const dontCountAction = () => (dispatch, getState) => {
   dispatch(updateLogic('pomodoro', logic.loop - 1));
   dispatch(prepareTimerAction());
 };
+
+const hideNotification = () => ({
+  type: 'NOTIFICATION_HIDE',
+});
+
+const showNotification = message => ({
+  type: 'NOTIFICATION_SHOW',
+  message
+});
+
+export const showNotificationAction = message => (dispatch) => {
+  dispatch(showNotification(message));
+  setTimeout(() => dispatch(hideNotification()), 1000);
+};

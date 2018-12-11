@@ -10,6 +10,7 @@ import Timer from './components/Timer';
 import Settings from './components/Settings';
 import Statistics from './components/Statistics';
 import About from './components/About';
+import Snackbar from './components/Snackbar';
 
 const routes = [
   {
@@ -53,14 +54,14 @@ const AppRouter = () => (
           )}
         />
       ))}
+      <nav>
+        {routes.map(route => (
+          <NavLink to={route.path} activeClassName='active' exact={route.exact} key={`link_${route.name}`}>
+            {route.name}
+          </NavLink>
+        ))}
+      </nav>
     </header>
-    <nav>
-      {routes.map(route => (
-        <NavLink to={route.path} activeClassName='active' exact={route.exact} key={`link_${route.name}`}>
-          {route.name}
-        </NavLink>
-      ))}
-    </nav>
     <main>
       <Switch>
         {routes.map(route => (
@@ -68,6 +69,7 @@ const AppRouter = () => (
         ))}
       </Switch>
     </main>
+    <Snackbar />
     <DevTools />
   </div>
 );

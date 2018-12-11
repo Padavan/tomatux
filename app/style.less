@@ -34,11 +34,13 @@ h1 {
 header {
   // height: 8rem;
   display: flex;
+  flex-direction: column;
   // justify-content: center;
   align-content: center;
   // margin: 0 16px;
   justify-content: space-between;
   background-color: #363640;
+  box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
   color: #fff;
   padding: 1rem;
 
@@ -64,7 +66,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #363640;
+  // background-color: #363640;
   & a {
     text-decoration: none;
     color: white;
@@ -139,4 +141,44 @@ button {
   }
 }
 
+.snackbar {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  visibility: visible;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 3rem;
+  color: white;
+  background-color: #2f2f2f;
+  border-radius: 3px;
+  max-width: 80%;
+  min-width: 300px;
+  box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
+  opacity: 1;
+  transition: visibility 300ms ease-in-out, opacity 300ms ease-in-out;
+  &__hidden {
+    // display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+  & p {
+    margin: auto 0;
+  }
+}
+
 // #363640 dark grey
+.layer-4 {
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.1);
+}
+
+.layer-5 {
+  box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
+}
+
