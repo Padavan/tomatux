@@ -9,10 +9,11 @@
     }
   }], "@babel/preset-react"],
   "plugins": [
+    "@babel/plugin-transform-strict-mode",
     "@babel/plugin-transform-destructuring",
     ["@babel/plugin-proposal-class-properties", {loose: true}],
     "@babel/plugin-proposal-object-rest-spread",
     "@babel/plugin-transform-runtime",
-    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }

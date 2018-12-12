@@ -1,6 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -25,6 +26,23 @@ module.exports = {
   optimization: {
     noEmitOnErrors: true,
     nodeEnv: 'production',
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: 'async',
+      maxAsyncRequests: 3,
+      maxInitialRequests: 3,
+      name: true,
+      automaticNameDelimiter: '.',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'initial',
+          maxSize: 1000000,
+          minSize: 300000,
+          priority: 1
+        }
+      },
+    }
   },
   stats: {
     assets: true,
@@ -37,8 +55,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './app/index.html',
       inject: 'body',
-      filename: 'client.html'
+      filename: 'index.html'
     }),
+    new MiniCssExtractPlugin({
+      filename: 'style.bundle.css',
+      allChunks: true
+    })
   ],
   module: {
     rules: [
@@ -50,7 +72,11 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader'
+        ]
       },
 
     ]

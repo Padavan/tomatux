@@ -5,7 +5,7 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import DevTools from './components/DevTools';
+// import DevTools from './components/DevTools';
 import Timer from './components/Timer';
 import Settings from './components/Settings';
 import Statistics from './components/Statistics';
@@ -70,7 +70,9 @@ const AppRouter = () => (
       </Switch>
     </main>
     <Snackbar />
-    <DevTools />
+    {/*
+      <DevTools />
+    */}
   </div>
 );
 

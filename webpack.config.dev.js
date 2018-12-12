@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   mode: 'development',
@@ -29,9 +31,6 @@ module.exports = {
     hotOnly: true,
     compress: true,
     https: false,
-    proxy: {
-      '/shared': 'http://api:3333/',
-    }
   },
   target: 'web',
   module: {
@@ -54,6 +53,10 @@ module.exports = {
       template: './app/index.html',
       inject: 'body',
       filename: 'index.html'
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerPort: '3001',
+      openAnalyzer: false,
     }),
     new webpack.HotModuleReplacementPlugin(),
   ]

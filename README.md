@@ -12,7 +12,7 @@ simple react/redux pomodoro timer
   - [x] basic pomodoro looping
   - [x] seconds to minutes - minutes to seconds
   - [x] web notification
-  - [] production build
+  - [x] production build
 
   *QUALITY OF LIFE*
   - [] custom messages for notifications
