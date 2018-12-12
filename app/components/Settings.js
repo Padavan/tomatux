@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { updateSettingsAction, restoreSettings, showNotificationAction } from '../actions';
 import { saveState } from '../localStorage';
+import { requestPermission, sendNotification } from '../notification';
 
 const hoomanNames = {
   pomodoro: 'Duration of pomodoro',
@@ -28,12 +29,13 @@ class Settings extends React.Component {
         {Object.keys(this.props.settings).map(option => (
           <label key={option} htmlFor={option}>
             {hoomanNames[option]}
-            <input type='number' value={this.props.settings[option]} onChange={e => this.handleData({ [option]: e.target.value })} />
+            <input type='number' value={this.props.settings[option]} onChange={e => this.props.handleData({ [option]: e.target.value })} />
           </label>
         ))}
 
         <p>Web Notification</p>
-        <b> Enable / Disable </b>
+        <button onClick={() => requestPermission()}> Enable </button>
+        <button onClick={() => sendNotification('Test notification')}> Test </button>
         <div>
           <button onClick={() => this.save(this.props.settings)}> Save </button>
           <button onClick={() => this.restoreDefault()}> Restore default </button>

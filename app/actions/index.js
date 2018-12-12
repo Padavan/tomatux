@@ -1,5 +1,22 @@
 
+import { sendNotification } from '../notification';
+
 let timerLoop = null;
+
+const hideNotification = () => ({
+  type: 'NOTIFICATION_HIDE',
+});
+
+const showNotification = message => ({
+  type: 'NOTIFICATION_SHOW',
+  message
+});
+
+export const showNotificationAction = message => (dispatch) => {
+  dispatch(showNotification(message));
+  setTimeout(() => dispatch(hideNotification()), 1000);
+};
+
 
 const updateLogic = (current, loop) => ({
   type: 'LOGIC_UPDATE',
@@ -25,6 +42,7 @@ const prepareTimerAction = () => (dispatch, getState) => {
 const loopEnd = () => (dispatch, getState) => {
   dispatch(stop());
   const { logic, settings } = getState();
+  let message = '';
   switch (logic.current) {
     case 'pomodoro':
       if (logic.loop === settings.loop - 1) {
@@ -32,17 +50,22 @@ const loopEnd = () => (dispatch, getState) => {
       } else {
         dispatch(updateLogic('pause', logic.loop + 1));
       }
+      message = 'Pomodoro ended';
       break;
     case 'pause':
       dispatch(updateLogic('pomodoro', logic.loop));
+      message = 'Pause ended';
       break;
     case 'long':
       dispatch(updateLogic('pomodoro', logic.loop));
+      message = 'Pause ended';
       break;
     default:
       break;
   }
   dispatch(prepareTimerAction());
+  sendNotification(message);
+  dispatch(showNotificationAction(message));
 };
 
 const tick = () => ({ type: 'TIMER_TICK' });
@@ -94,18 +117,4 @@ export const dontCountAction = () => (dispatch, getState) => {
   const { logic } = getState();
   dispatch(updateLogic('pomodoro', logic.loop - 1));
   dispatch(prepareTimerAction());
-};
-
-const hideNotification = () => ({
-  type: 'NOTIFICATION_HIDE',
-});
-
-const showNotification = message => ({
-  type: 'NOTIFICATION_SHOW',
-  message
-});
-
-export const showNotificationAction = message => (dispatch) => {
-  dispatch(showNotification(message));
-  setTimeout(() => dispatch(hideNotification()), 1000);
 };

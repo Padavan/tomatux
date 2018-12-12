@@ -8,10 +8,11 @@ simple react/redux pomodoro timer
   - [x] basic design
   - [x] basic timer working
   - [x] settings save and load
-  - [] error reporting if localstorage unavailable
+  - [x] error reporting if localstorage unavailable
   - [x] basic pomodoro looping
   - [x] seconds to minutes - minutes to seconds
-  - [] web notification
+  - [x] web notification
+  - [] production build
 
   *QUALITY OF LIFE*
   - [] custom messages for notifications
