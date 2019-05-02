@@ -3,7 +3,6 @@ import { persistState } from 'redux-devtools';
 import thunk from 'redux-thunk';
 
 import rootReducer from '../reducers';
-import DevTools from '../components/DevTools';
 import { loadState } from '../localStorage';
 
 const initialSettingsState = loadState();
@@ -15,13 +14,8 @@ const initialTimerState = {
 const initialState = { ...initialSettingsState, timer: initialTimerState };
 
 const enhancer = compose(
-  applyMiddleware(thunk),
-  DevTools.instrument(),
-  persistState(
-    window.location.href.match(
-      /[?&]debug_session=([^&#]+)\b/
-    )
-  )
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
 );
 
 export default function configureStore() {
