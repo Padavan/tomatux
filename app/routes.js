@@ -1,20 +1,22 @@
 import React from 'react';
-import {
-  Route,
-  Switch,
-  NavLink
-} from 'react-router-dom';
+// import {
+//   Route,
+//   Switch,
+//   NavLink
+// } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-// import DevTools from './components/DevTools';
 import Timer from './components/Timer';
 import Settings from './components/Settings';
 import Statistics from './components/Statistics';
 import About from './components/About';
 import Snackbar from './components/Snackbar';
 
+import { changeTabAction } from './actions';
+
 const routes = [
   {
-    path: '/',
+    path: '/default',
     name: 'Timer',
     exact: true,
     component: () => <Timer />
@@ -39,41 +41,47 @@ const routes = [
   }
 ];
 
-const AppRouter = () => (
+const AppRouter = (props) => (
   <div>
     <header>
-      {routes.map(route => (
-        <Route
-          key={`header_${route.name}`}
-          path={route.path}
-          exact={route.exact}
-          component={() => (
-            <h6>
-              {route.name}
-            </h6>
-          )}
-        />
-      ))}
+      <h2> Current: {props.ui.tab} </h2>
       <nav>
-        {routes.map(route => (
-          <NavLink to={route.path} activeClassName='active' exact={route.exact} key={`link_${route.name}`}>
-            {route.name}
-          </NavLink>
-        ))}
+      {routes.map(route => (
+        <button
+          key={`header_${route.name}`}
+          onClick={() => props.changeTab(route.name)}
+          className={props.ui.tab === route.name ? 'active' : ''}
+        >
+          {route.name}
+        </button>
+      ))}
       </nav>
     </header>
     <main>
-      <Switch>
-        {routes.map(route => (
-          <Route key={`route_${route.name}`} path={route.path} exact={route.exact} component={route.component} />
-        ))}
-      </Switch>
+    {
+        (props.ui.tab === 'Timer') ? <Timer /> : ''
+
+    }
+      {/*
+        (props.ui.tab === 'Settings') ? <Settings /> : ''
+        (props.ui.tab === 'Statistics') ? <Statistics /> : ''
+        (props.ui.tab === 'About') ? <About /> : ''
+      */}
     </main>
     <Snackbar />
-    {/*
-      <DevTools />
-    */}
   </div>
 );
 
-export default AppRouter;
+
+
+const mapStateToProps = state => ({
+  ui: state.ui,
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeTab(tab) {
+    dispatch(changeTabAction(tab));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

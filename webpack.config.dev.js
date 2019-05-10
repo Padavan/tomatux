@@ -6,7 +6,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: {
     app: path.resolve(__dirname, 'app'),
   },
@@ -42,8 +42,8 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },

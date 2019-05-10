@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore.dev';
 
 import AppRouter from './routes';
-import './style.less';
+import './style.css';
 
 const store = configureStore();
 

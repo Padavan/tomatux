@@ -12,6 +12,11 @@ const showNotification = message => ({
   message
 });
 
+export const changeTabAction = tab => ({
+  type: 'TAB_CHANGE',
+  tab
+});
+
 export const showNotificationAction = message => (dispatch) => {
   dispatch(showNotification(message));
   setTimeout(() => dispatch(hideNotification()), 1000);
