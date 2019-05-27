@@ -12,10 +12,12 @@ const initialTimerState = {
 
 const initialState = { ...initialSettingsState, timer: initialTimerState };
 
-const enhancer = compose(
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers(
   applyMiddleware(thunk)
 );
+
 
 export default function configureStore() {
   const store = createStore(rootReducer, initialState, enhancer);

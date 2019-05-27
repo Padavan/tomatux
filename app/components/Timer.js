@@ -10,9 +10,9 @@ const putO = n => (
 const Timer = ({ timer }) => (
   <section>
     <h2> Counter </h2>
-    <p>
+    <h3>
       {`${putO(Math.floor(timer.time / 60))} : ${putO(timer.time % 60)}`}
-    </p>
+    </h3>
     <Buttons />
   </section>
 );

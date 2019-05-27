@@ -31,6 +31,11 @@ h1 {
   margin: .67rem 0;
 }
 
+h3 {
+  font-size: 1.2rem;
+  margin: auto;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -109,8 +114,6 @@ nav button.active {
   grid-template-columns: 1fr 1fr;
 }
 
-
-
 .snackbar {
   position: fixed;
   bottom: 10%;
@@ -151,4 +154,3 @@ nav button.active {
 .layer-5 {
   box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
 }
-

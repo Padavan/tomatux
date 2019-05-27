@@ -1,9 +1,4 @@
 import React from 'react';
-// import {
-//   Route,
-//   Switch,
-//   NavLink
-// } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Timer from './components/Timer';
@@ -58,21 +53,14 @@ const AppRouter = (props) => (
       </nav>
     </header>
     <main>
-    {
-        (props.ui.tab === 'Timer') ? <Timer /> : ''
-
-    }
-      {/*
-        (props.ui.tab === 'Settings') ? <Settings /> : ''
-        (props.ui.tab === 'Statistics') ? <Statistics /> : ''
-        (props.ui.tab === 'About') ? <About /> : ''
-      */}
+      {(props.ui.tab === 'Timer') && <Timer />}
+      {(props.ui.tab === 'Settings') && <Settings />}
+      {(props.ui.tab === 'Statistics') && <Statistics />}
+      {(props.ui.tab === 'About') && <About />}
     </main>
     <Snackbar />
   </div>
 );
-
-
 
 const mapStateToProps = state => ({
   ui: state.ui,

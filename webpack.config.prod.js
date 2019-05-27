@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -9,7 +11,7 @@ module.exports = {
     app: path.resolve(__dirname, 'app'),
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
@@ -27,22 +29,22 @@ module.exports = {
     noEmitOnErrors: true,
     nodeEnv: 'production',
     minimizer: [new TerserPlugin()],
-    splitChunks: {
-      chunks: 'async',
-      maxAsyncRequests: 3,
-      maxInitialRequests: 3,
-      name: true,
-      automaticNameDelimiter: '.',
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'initial',
-          maxSize: 1000000,
-          minSize: 300000,
-          priority: 1
-        }
-      },
-    }
+    // splitChunks: {
+    //   chunks: 'async',
+    //   maxAsyncRequests: 3,
+    //   maxInitialRequests: 3,
+    //   name: true,
+    //   automaticNameDelimiter: '.',
+    //   cacheGroups: {
+    //     vendors: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       chunks: 'initial',
+    //       maxSize: 1000000,
+    //       minSize: 300000,
+    //       priority: 1
+    //     }
+    //   },
+    // }
   },
   stats: {
     assets: true,
@@ -57,9 +59,16 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
+    new CopyWebpackPlugin([
+        { from: 'public' }
+    ]),
     new MiniCssExtractPlugin({
-      filename: 'style.bundle.css',
+      filename: 'style.css',
       allChunks: true
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
     })
   ],
   module: {

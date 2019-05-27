@@ -15,12 +15,13 @@ simple react/redux pomodoro timer
   - [x] production build
 
   *QUALITY OF LIFE*
+  - [x] make a PWA stuff and webapp for android
   - [] custom messages for notifications
   - [] statistics
   - [] more styles
   - [] sound of ticks
   - [] mobile friendly input for numbers
-  - [] get rid of less
+  - [x] get rid of less
 
 ##Bugs
 
