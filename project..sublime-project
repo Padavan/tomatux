@@ -1,0 +1,22 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"LSP":
+		{
+			"javascript-typescript-langserver":
+			{
+				"enabled": true
+			},
+			"typescript-language-server":
+			{
+				"enabled": false
+			}
+		}
+	}
+}

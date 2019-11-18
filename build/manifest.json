@@ -1,0 +1,21 @@
+{
+  "short_name": "Fisheye",
+  "name": "Popped Fisheye",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#363640",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#363640"
+}

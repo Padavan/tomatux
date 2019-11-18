@@ -23,6 +23,8 @@ simple react/redux pomodoro timer
   - [] mobile friendly input for numbers
   - [x] get rid of less
 
+  - [x] migrate to ts
+
 ##Bugs
 
   some number states in redux are string;
