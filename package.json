@@ -3,15 +3,20 @@
   "description": "simple react/redux pomodoro timer",
   "repository": "https://github.com/Padavan/tomatux.git",
   "license": "MIT",
-  "sideEffects": [
-    "*.css",
-  ],
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/plugin-transform-strict-mode": "^7.2.0",
+    "@storybook/addon-info": "^5.3.14",
+    "@storybook/addon-options": "^5.3.14",
+    "@storybook/cli": "^5.3.14",
+    "@storybook/preset-typescript": "^1.2.0",
+    "@storybook/react": "^5.3.14",
+    "babel-loader": "^8.0.6",
     "stylelint": "^11.1.1",
     "webpack-bundle-analyzer": "^3.6.0"
   },
   "dependencies": {
+    "@babel/core": "^7.8.6",
     "@types/history": "^4.7.3",
     "@types/node": "^12.12.7",
     "@types/react": "^16.9.11",
@@ -49,6 +54,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./config/webpack.config.dev.js --display-error-details",
     "build": "rimraf dist && webpack --config ./config/webpack.config.dev.js",
-    "clean": "rimraf dist node_modules"
+    "clean": "rimraf dist node_modules",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   }
 }
