@@ -39,8 +39,7 @@ import './style.css';
 
 // registerSW();
 // renderApp(App);
-render(
-    <App />,
+render(<App />,
     document.body.appendChild(document.createElement('div')),
-  );
+);
 

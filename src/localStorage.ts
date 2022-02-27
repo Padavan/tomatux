@@ -10,7 +10,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state):boolean => {
+export const saveState = (state: Record<string, unknown>):boolean => {
   let status:boolean = false;
   try {
     const serializedState = JSON.stringify(state);

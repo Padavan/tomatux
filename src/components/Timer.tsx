@@ -1,25 +1,24 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { convertTime } from '../helpers/convertTime';
+import { Buttons } from './Buttons';
+import { RootState } from '../store';
 
-import Buttons from './Buttons';
-// import styles from './Timer.css';
+export const Timer = () => {
+  const timer = useSelector((state: RootState) => state.timer, shallowEqual);
+  const dispatch = useDispatch();
 
-const putO = n => (
-  (n > 9) ? `${n}` : `0${n}`
-);
+  useEffect(() => {
+    dispatch({ type: 'TIMER_INIT' });
+  }, []);
 
-const Timer = ({ timer }) => (
-  <section>
-    <h2> Counter </h2>
-    <h3>
-      {`${putO(Math.floor(timer.time / 60))} : ${putO(timer.time % 60)}`}
-    </h3>
-    <Buttons />
-  </section>
-);
-
-const mapStateToProps = state => ({
-  timer: state.timer,
-});
-
-export default connect(mapStateToProps)(Timer);
+  return (
+    <section>
+      <h3>
+        {convertTime(timer.time)}
+      </h3>
+      <Buttons />
+    </section>
+  )
+};

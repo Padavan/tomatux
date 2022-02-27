@@ -1,4 +1,6 @@
-html, body {
+/* src/style.css */
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -7,35 +9,64 @@ html, body {
   font-size: 100%;
   word-wrap: break-word;
   font-kerning: normal;
-  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
-  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
-  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
-  font-feature-settings: "kern", "liga", "clig", "calt";
+  -moz-font-feature-settings:
+    "kern",
+    "liga",
+    "clig",
+    "calt";
+  -ms-font-feature-settings:
+    "kern",
+    "liga",
+    "clig",
+    "calt";
+  -webkit-font-feature-settings:
+    "kern",
+    "liga",
+    "clig",
+    "calt";
+  font-feature-settings:
+    "kern",
+    "liga",
+    "clig",
+    "calt";
   min-height: 100%;
   line-height: 1.4;
-  font-family: Segoe UI, -apple-system, BlinkMacSystemFont, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    Segoe UI,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
-
 html {
   box-sizing: border-box;
   overflow-y: scroll;
 }
-
 * {
   box-sizing: inherit;
 }
-
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
 h1 {
   font-size: 1.5rem;
-  margin: .67rem 0;
+  margin: .67rem auto;
+  font-weight: 300;
 }
-
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: -1px;
   margin: auto;
 }
-
 header {
   display: flex;
   flex-direction: column;
@@ -46,13 +77,11 @@ header {
   color: #fff;
   padding: 0.5rem;
 }
-
 h6 {
   font-size: 1.25rem;
   font-weight: 400;
   margin: 3rem 0rem 3rem 3rem;
 }
-
 main {
   display: flex;
   width: 100%;
@@ -61,59 +90,63 @@ main {
   justify-content: center;
   align-content: center;
 }
-
 section {
-  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   margin: 1rem 0;
   align-self: center;
 }
-
 label {
   display: block;
+  margin-right: auto;
 }
-
 label input {
   display: block;
 }
-
 button {
   height: 2rem;
   min-width: 6rem;
   background-color: white;
   border: 2px solid #363640;
+  font-weight: 700;
+  margin: 0.5rem;
 }
-
-button.disabled, button:disabled {
+button.disabled,
+button:disabled {
   border: 2px solid #5e5e66;
   background-color: #fafafa;
 }
-
 nav {
   position: relative;
   width: 100%;
   padding: 0 1rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
 }
-
-nav button {
-  color: white;
+nav h1 {
+  margin-right: auto;
+}
+nav a {
   background: none;
+  text-decoration: none;
+  padding: 0 0.5rem;
 }
-
-nav button.active {
-  border-bottom: 2px solid white;
+nav a:hover {
+  background: none;
+  border-right: 2px solid black;
+}
+nav a.active {
+  border-right: 2px solid #DF0003;
   background-color: inherit;
 }
-
 .segment {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
 }
-
 .snackbar {
   position: fixed;
   bottom: 10%;
@@ -137,23 +170,32 @@ nav button.active {
   opacity: 1;
   transition: visibility 300ms ease-in-out, opacity 300ms ease-in-out;
 }
-
 .snackbar__hidden {
   visibility: hidden;
   opacity: 0;
 }
-
 .snackbar p {
   margin: auto 0;
 }
-
 .layer-4 {
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.1);
 }
-
 .layer-5 {
   box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
 }
-
-
-/*# sourceMappingURL=style.css.map*/
+.primary {
+  border-color: #DF0003;
+}
+.buttonContainer {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.settingsOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}

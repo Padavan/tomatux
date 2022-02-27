@@ -1,4 +1,6 @@
-const stats = (state = {}, action) => {
+import { AnyAction } from 'redux';
+
+const stats = (state = {}, action: AnyAction) => {
   switch (action.type) {
     case 'STATS_CHANGE':
       return { ...state, ...action.option };

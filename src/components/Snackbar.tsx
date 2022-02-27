@@ -1,27 +1,20 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
-const Snackbar = ({ ui }) => {
-  // if (!ui.notification) {
-  //   return null;
-  // }
+export const Snackbar = () => {
+  const ui = useSelector((state: RootState) => state.ui);
+  const timer = useSelector((state: RootState) => state.timer);
+
+  if (!ui.notification) {
+    return null;
+  }
+
   return (
-    <div className={`snackbar ${(!ui.notification) && 'snackbar__hidden'}`}>
+    <div className='snackbar'>
       <p>
         {ui.notificationMessage}
       </p>
-      {/*
-        <button onClick={() => console.log('hide')}>
-          hide
-        </button>
-      */}
     </div>
   );
 };
-
-const mapStateToProps = state => ({
-  ui: state.ui,
-  // logic: state.logic
-});
-
-export default connect(mapStateToProps)(Snackbar);

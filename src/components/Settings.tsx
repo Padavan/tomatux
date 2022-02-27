@@ -1,71 +1,59 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-
-import { updateSettingsAction, restoreSettings, showNotificationAction } from '../actions';
+import { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { saveState } from '../localStorage';
-import { requestPermission, sendNotification } from '../notification';
+import { requestPermission, sendNotification, showThenHideSnackbar } from '../helpers/notification';
+import { RootState } from '../store';
+import { ISettings } from '../reducers/settingsReducer';
 
-const hoomanNames = {
+const hoomanNames: Record<string, string> = {
   pomodoro: 'Duration of pomodoro',
   pause: 'Duration of pause',
-  long: 'Duration of long pause',
+  long_pause: 'Duration of long pause',
   loop: 'Number of pomodoro loops before long pause'
 };
 
-type Props = {
-  settings: any;
-  handleData: (data: any) => void;
-  restoreDefault: () => void;
-  showNotification: (text: string) => void;
-}
+export const Settings = () => {
+  const dispatch = useDispatch();
+  const settings = useSelector((state: RootState) => state.settings);
 
-class Settings extends React.Component<Props> {
-  public render() {
-    return (
-      <section>
-        {Object.keys(this.props.settings).map(option => (
-          <label key={option} htmlFor={option}>
-            {hoomanNames[option]}
-            <input type='number' value={this.props.settings[option]} onChange={e => this.props.handleData({ [option]: e.target.value })} />
-          </label>
-        ))}
-
-        <p>Web Notification</p>
-        <button onClick={() => requestPermission()}> Enable </button>
-        <button onClick={() => sendNotification('Test notification')}> Test </button>
-        <div>
-          <button onClick={() => this.save(this.props.settings)}> Save </button>
-          <button onClick={() => this.props.restoreDefault()}> Restore default </button>
-        </div>
-      </section>
-    );
-  }
-
-  private save(settings) {
+  const save = (settings: ISettings) => {
     const status = saveState({ settings });
-    // console.log('shit');
     if (status) {
-      this.props.showNotification('Settings saved');
+      showThenHideSnackbar('Settings saved', dispatch);
     } else {
-      this.props.showNotification('localStorage is unavailable');
+      showThenHideSnackbar('localStorage is unavailable', dispatch);
     }
   }
+
+  return (
+    <section>
+      {Object.keys(settings).map(option => (
+        <div key={option} className='settingsOption'>
+          <label htmlFor={option}>
+            {hoomanNames[option]}
+          </label>
+          <input
+            type='number'
+            value={settings[option]}
+            onChange={e => dispatch({ type: 'SETTINGS_CHANGE', option: { [option]: e.target.value }})} />
+        </div>
+      ))}
+
+      <div className='settingsOption'>
+        <label>Web Notification</label>
+        <div>
+          <button onClick={() => requestPermission()}> Enable </button>
+          <button onClick={() => sendNotification('Test notification')}> Test </button>
+        </div>
+      </div>
+      <section>
+        <p>You can save settings for next session or restore default settings.</p>
+        <div style={{ display: 'flex', justifyContent: 'cetner', margin: '0 auto'}}>
+          <button onClick={() => save(settings)}> Save </button>
+          <button onClick={() => dispatch({ type: 'SETTINGS_RESTORE' })}> Restore default </button>
+        </div>
+      </section>
+    </section>
+  );
 }
-
-const mapStateToProps = state => ({
-  settings: state.settings
-});
-
-const mapDispatchToProps = dispatch => ({
-  handleData(option) {
-    dispatch(updateSettingsAction(option));
-  },
-  restoreDefault() {
-    dispatch(restoreSettings());
-  },
-  showNotification(payload) {
-    dispatch(showNotificationAction(payload));
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);

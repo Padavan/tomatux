@@ -1,3 +1,5 @@
+import { AnyAction } from 'redux';
+
 const initialState = {
   notification: false,
   notificationMessage: 'empty',
@@ -5,7 +7,7 @@ const initialState = {
   tab: 'Timer',
 };
 
-const ui = (state = initialState, action) => {
+const ui = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case 'NOTIFICATION_SHOW':
       return { ...state, notification: true, notificationMessage: action.message };

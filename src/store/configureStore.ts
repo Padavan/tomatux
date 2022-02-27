@@ -8,11 +8,14 @@ const initialSettingsState = loadState();
 const initialTimerState = {
   time: initialSettingsState * 60 ? initialSettingsState.settings.pomodoro : 25 * 60,
   running: false,
+  settings: {
+    
+  }
 };
 
 const initialState = { ...initialSettingsState, timer: initialTimerState };
 
-export default function configureStore() {
-  const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+export const configureStore = () => {
+  const store = createStore(rootReducer, undefined, applyMiddleware(thunk));
   return store;
 }
