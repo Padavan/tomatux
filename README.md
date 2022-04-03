@@ -25,8 +25,11 @@ simple react/redux pomodoro timer
 
   - [x] migrate to ts
 
-##Bugs
+## Bugs
 
   some number states in redux are string;
 
 - [] storybook require babel with other bells and wistles
+
+
+## Build

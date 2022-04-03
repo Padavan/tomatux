@@ -9,6 +9,8 @@ export const Timer = () => {
   const timer = useSelector((state: RootState) => state.timer, shallowEqual);
   const dispatch = useDispatch();
 
+  console.log('Timer mount');
+
   useEffect(() => {
     dispatch({ type: 'TIMER_INIT' });
   }, []);

@@ -23,7 +23,7 @@ const liveServer = require("live-server");
 	chokidar
 		// Watches TypeScript and React TypeScript.
 		.watch("src/**/*", {
-			interval: 0, // No delay
+			interval: 1, // No delay
 		})
 		// Rebuilds esbuild (incrementally -- see `build.incremental`).
 		.on("all", () => {

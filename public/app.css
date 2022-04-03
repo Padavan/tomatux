@@ -51,7 +51,7 @@ html {
 * {
   box-sizing: inherit;
 }
-.container {
+#app {
   max-width: 720px;
   margin: 0 auto;
   padding: 1rem;
@@ -62,10 +62,10 @@ h1 {
   font-weight: 300;
 }
 h3 {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 300;
   letter-spacing: -1px;
-  margin: auto;
+  margin: 2rem auto;
 }
 header {
   display: flex;
@@ -91,6 +91,7 @@ main {
   align-content: center;
 }
 section {
+  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -120,27 +121,36 @@ button:disabled {
 nav {
   position: relative;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 0 0 0.5rem;
+  height: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
+  align-items: baseline;
+  line-height: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 nav h1 {
-  margin-right: auto;
+  margin: 0 auto 0 0;
+  height: 2rem;
+  align-self: flex-start;
 }
-nav a {
+nav a,
+nav a:visited {
   background: none;
   text-decoration: none;
   padding: 0 0.5rem;
+  height: 2rem;
+  color: hsla(0, 0%, 0%, 0.8);
+  min-width: 100px;
+  text-align: center;
 }
 nav a:hover {
   background: none;
-  border-right: 2px solid black;
+  border-bottom: 2px solid #f2999a;
 }
 nav a.active {
-  border-right: 2px solid #DF0003;
-  background-color: inherit;
+  border-bottom: 3px solid #DF0003;
 }
 .segment {
   display: grid;
@@ -198,4 +208,24 @@ nav a.active {
   justify-content: space-between;
   margin-bottom: 1rem;
   align-items: center;
+}
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 11px);
+  grid-template-columns: repeat(auto-fill, 11px);
+  column-gap: 4px;
+  row-gap: 4px;
+}
+.cell {
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgb(27, 31, 35);
+  border-radius: 2px;
+}
+.invisibleCell {
+  width: 11px;
+  height: 11px;
+  background-color: red;
+  visibility: hidden;
 }
