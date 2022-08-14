@@ -12,7 +12,7 @@ export const AppRouter = () => (
   <>
     <Nav />
     <Routes>
-      <Route path="/" element={<Timer />} exact />
+      <Route path="/" element={<Timer />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/statistics" element={<Statistics />} />
       <Route path="/about" element={<About />} />

@@ -18,6 +18,7 @@ const liveServer = require("live-server");
 		minify: process.env.NODE_ENV === "production",
 		// Bundles JavaScript to (see `entryPoints`).
 		outfile: "public/app.js",
+		loader: { '.wav': 'file' },
 	})
 	// `chokidar` watcher source changes.
 	chokidar
@@ -36,7 +37,7 @@ const liveServer = require("live-server");
 		// spa: true,
 		file: "index.html",
 		// Uses `PORT=...` or 8080 as a fallback.
-		port: +process.env.PORT || 8080,
+		port: +process.env.PORT || 3000,
 		// Uses `public` as the local server folder.
 		root: "public",
 	})

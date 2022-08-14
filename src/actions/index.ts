@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-export let intervalId: number;
+export let intervalId: NodeJS.Timer;
 
 export const startLoop = (dispatch: Dispatch) => {
   clearInterval(intervalId);

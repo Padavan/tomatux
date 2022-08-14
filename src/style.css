@@ -32,12 +32,6 @@ html {
   padding: 1rem;
 }
 
-h1 {
-  font-size: 1.5rem;
-  margin: .67rem auto;
-  font-weight: 300;
-}
-
 h3 {
   font-size: 2.5rem;
   font-weight: 300;
@@ -73,7 +67,7 @@ main {
 
 section {
   /*max-width: 400px;*/
-  padding: 0 0.5rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -114,16 +108,21 @@ nav {
   justify-content: flex-end;
   align-items: baseline;
   line-height: 1.5rem;
+  padding: 0 0;
+  margin: 1rem 0;
   /*align-content: center;*/
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 2px solid rgba(0,0,0,0.2);
 }
 
-nav h1 {
-  margin: 0 auto 0 0;
-  /*margin-right: auto;*/
-  height: 2rem;
+nav a:first-child {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0 1rem;
+  font-weight: 300;
   align-self: flex-start;
+  margin-right: auto;
 }
+
 
 nav a, nav a:visited {
   background: none;

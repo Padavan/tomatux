@@ -13,9 +13,9 @@ export const Buttons = () => {
 
   return (
     <div className='buttonContainer'>
-      <button disabled={!timer.running} onClick={() => resetLoop(dispatch)}> StopLoop </button>
+      <button disabled={!timer.running} onClick={() => resetLoop(dispatch)} title="Reset clock and begin current phase from begining"> Reset </button>
       {timer.stage === 'pause'
-          && <button onClick={() => dispatch({ type: 'SKIP_PAUSE' })}> SkipPause </button>
+          && <button onClick={() => dispatch({ type: 'SKIP_PAUSE' })} title="Skip pause and begin new pomodoro"> Skip </button>
       }
       <button
         className='primary'

@@ -24865,10 +24865,12 @@
       className: "buttonContainer"
     }, /* @__PURE__ */ React4.createElement("button", {
       disabled: !timer2.running,
-      onClick: () => resetLoop(dispatch)
-    }, " StopLoop "), timer2.stage === "pause" && /* @__PURE__ */ React4.createElement("button", {
-      onClick: () => dispatch({ type: "SKIP_PAUSE" })
-    }, " SkipPause "), /* @__PURE__ */ React4.createElement("button", {
+      onClick: () => resetLoop(dispatch),
+      title: "Reset clock and begin current phase from begining"
+    }, " Reset "), timer2.stage === "pause" && /* @__PURE__ */ React4.createElement("button", {
+      onClick: () => dispatch({ type: "SKIP_PAUSE" }),
+      title: "Skip pause and begin new pomodoro"
+    }, " Skip "), /* @__PURE__ */ React4.createElement("button", {
       className: "primary",
       disabled: timer2.running,
       onClick: () => startLoop(dispatch),
@@ -25038,13 +25040,10 @@
 
   // src/components/About.tsx
   var React8 = __toESM(require_react());
-  var About = () => {
-    return /* @__PURE__ */ React8.createElement("section", null, /* @__PURE__ */ React8.createElement("p", null, "This is simple pomodoro timer using react+redux+react-router"), /* @__PURE__ */ React8.createElement("p", null, "Source code is there: ", /* @__PURE__ */ React8.createElement("a", {
-      href: "https://github.com/Padavan/tomatux",
-      norefferer: "true",
-      target: "_blank"
-    }, "github.com/Padavan/tomatux")));
-  };
+  var About = () => /* @__PURE__ */ React8.createElement("section", null, /* @__PURE__ */ React8.createElement("p", null, "This is simple pomodoro timer using react+redux+react-router"), /* @__PURE__ */ React8.createElement("p", null, "Source code is there: ", /* @__PURE__ */ React8.createElement("a", {
+    href: "https://github.com/Padavan/tomatux",
+    target: "_blank"
+  }, "github.com/Padavan/tomatux")));
 
   // src/components/Snackbar.tsx
   var React9 = __toESM(require_react());
@@ -25063,10 +25062,10 @@
   var React10 = __toESM(require_react());
   var Nav = () => {
     const getClassName = ({ isActive }) => isActive ? "active" : "";
-    return /* @__PURE__ */ React10.createElement("nav", null, /* @__PURE__ */ React10.createElement("h1", null, "Pomodoro Timer"), /* @__PURE__ */ React10.createElement(NavLink, {
+    return /* @__PURE__ */ React10.createElement("nav", null, /* @__PURE__ */ React10.createElement(NavLink, {
       to: "/",
       className: getClassName
-    }, "Timer"), /* @__PURE__ */ React10.createElement(NavLink, {
+    }, "Pomodoro Timer"), /* @__PURE__ */ React10.createElement(NavLink, {
       to: "/settings",
       className: getClassName
     }, "Settings"), /* @__PURE__ */ React10.createElement(NavLink, {
@@ -25081,8 +25080,7 @@
   // src/routes.tsx
   var AppRouter = () => /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(Nav, null), /* @__PURE__ */ React11.createElement(Routes, null, /* @__PURE__ */ React11.createElement(Route, {
     path: "/",
-    element: /* @__PURE__ */ React11.createElement(Timer, null),
-    exact: true
+    element: /* @__PURE__ */ React11.createElement(Timer, null)
   }), /* @__PURE__ */ React11.createElement(Route, {
     path: "/settings",
     element: /* @__PURE__ */ React11.createElement(Settings, null)
@@ -25625,14 +25623,22 @@
     return store2;
   };
 
+  // src/assets/bell.wav
+  var bell_default = "./bell-BCEFV5TZ.wav";
+
   // src/store/watcher.ts
+  var makeSound = () => {
+    const audio = new Audio(bell_default);
+    audio.play();
+  };
   var watcher = (store2) => {
-    console.log("subscribe time: ", store2.getState().timer.time);
     const currentState = store2.getState();
     if (currentState.timer.time <= 0 && currentState.timer.running) {
       clearInterval(intervalId);
       store2.dispatch({ type: "TIME_OUT" });
       sendNotification("Timer is out");
+      console.log("audio.play");
+      makeSound();
       showThenHideSnackbar("Timer is out", store2.dispatch);
     }
   };
@@ -25647,45 +25653,7 @@
   }, /* @__PURE__ */ React12.createElement(BrowserRouter, null, /* @__PURE__ */ React12.createElement(AppRouter, null)));
   var App_default = App;
 
-  // src/serviceWorker.ts
-  var isLocalhost = Boolean(window.location.hostname === "localhost" || window.location.hostname === "[::1]" || window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
-  function register(config) {
-    if (false) {
-      const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-      if (publicUrl.origin !== window.location.origin) {
-        return;
-      }
-      window.addEventListener("load", () => {
-        const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-        if (isLocalhost) {
-          checkValidServiceWorker(swUrl, config);
-          navigator.serviceWorker.ready.then(() => {
-            console.log("This web app is being served cache-first by a service worker. To learn more, visit https://bit.ly/CRA-PWA");
-          });
-        } else {
-          registerValidSW(swUrl, config);
-        }
-      });
-    }
-  }
-
   // src/index.tsx
-  register();
-  var registerSW = () => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/service-worker.js").then((registration) => {
-        registration.addEventListener("updatefound", () => {
-          const installingWorker = registration.installing;
-          console.log("A new service worker is being installed:", installingWorker);
-        });
-      }).catch((error) => {
-        console.log("Service worker registration failed:", error);
-      });
-    } else {
-      console.log("Service workers are not supported.");
-    }
-  };
-  registerSW();
   var container = document.getElementById("app");
   var root = (0, import_client.createRoot)(container);
   root.render(/* @__PURE__ */ import_react11.default.createElement(App_default, null));
