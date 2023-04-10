@@ -4,7 +4,7 @@ import { getNextStage } from '../helpers/getNextStage';
 export interface ISettings {
   pomodoro: number;
   pause: number;
-};
+}
 
 export interface ITimer {
   time: number;
@@ -12,7 +12,7 @@ export interface ITimer {
   stage: keyof ISettings;
   completedPomodoros: number;
   settings: ISettings;
-};
+}
 
 const initialState: ITimer = {
   time: 0,

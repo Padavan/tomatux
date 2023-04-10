@@ -1008,7 +1008,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState3(initialState5) {
+          function useState4(initialState5) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState5);
           }
@@ -1808,7 +1808,7 @@
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer3;
           exports.useRef = useRef5;
-          exports.useState = useState3;
+          exports.useState = useState4;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -23521,11 +23521,11 @@
   });
 
   // src/index.tsx
-  var import_react11 = __toESM(require_react());
-  var import_client = __toESM(require_client());
+  var import_react11 = __toESM(require_react(), 1);
+  var import_client = __toESM(require_client(), 1);
 
   // src/App.tsx
-  var React12 = __toESM(require_react());
+  var React12 = __toESM(require_react(), 1);
 
   // node_modules/react-router-dom/index.js
   var import_react2 = __toESM(require_react());
@@ -24829,11 +24829,11 @@
   setBatch(import_react_dom.unstable_batchedUpdates);
 
   // src/routes.tsx
-  var React11 = __toESM(require_react());
+  var React11 = __toESM(require_react(), 1);
 
   // src/components/Timer.tsx
-  var React5 = __toESM(require_react());
-  var import_react10 = __toESM(require_react());
+  var React5 = __toESM(require_react(), 1);
+  var import_react10 = __toESM(require_react(), 1);
 
   // src/helpers/convertTime.ts
   var putO = (n) => n > 9 ? `${n}` : `0${n}`;
@@ -24842,7 +24842,7 @@
   };
 
   // src/components/Buttons.tsx
-  var React4 = __toESM(require_react());
+  var React4 = __toESM(require_react(), 1);
 
   // src/actions/index.ts
   var intervalId;
@@ -24882,7 +24882,6 @@
   var Timer = () => {
     const timer2 = useSelector((state) => state.timer, shallowEqual);
     const dispatch = useDispatch();
-    console.log("Timer mount");
     (0, import_react10.useEffect)(() => {
       dispatch({ type: "TIMER_INIT" });
     }, []);
@@ -24890,7 +24889,7 @@
   };
 
   // src/components/Settings.tsx
-  var React6 = __toESM(require_react());
+  var React6 = __toESM(require_react(), 1);
 
   // src/localStorage.ts
   var loadState = () => {
@@ -24976,7 +24975,7 @@
   };
 
   // src/components/Statistics.tsx
-  var React7 = __toESM(require_react());
+  var React7 = __toESM(require_react(), 1);
   var mockStats = /* @__PURE__ */ new Map();
   mockStats.set("2022-01-15", 1);
   mockStats.set("2022-01-20", 2);
@@ -25039,14 +25038,14 @@
   };
 
   // src/components/About.tsx
-  var React8 = __toESM(require_react());
+  var React8 = __toESM(require_react(), 1);
   var About = () => /* @__PURE__ */ React8.createElement("section", null, /* @__PURE__ */ React8.createElement("p", null, "This is simple pomodoro timer using react+redux+react-router"), /* @__PURE__ */ React8.createElement("p", null, "Source code is there: ", /* @__PURE__ */ React8.createElement("a", {
     href: "https://github.com/Padavan/tomatux",
     target: "_blank"
   }, "github.com/Padavan/tomatux")));
 
   // src/components/Snackbar.tsx
-  var React9 = __toESM(require_react());
+  var React9 = __toESM(require_react(), 1);
   var Snackbar = () => {
     const ui2 = useSelector((state) => state.ui);
     const timer2 = useSelector((state) => state.timer);
@@ -25059,7 +25058,7 @@
   };
 
   // src/components/Nav.tsx
-  var React10 = __toESM(require_react());
+  var React10 = __toESM(require_react(), 1);
   var Nav = () => {
     const getClassName = ({ isActive }) => isActive ? "active" : "";
     return /* @__PURE__ */ React10.createElement("nav", null, /* @__PURE__ */ React10.createElement(NavLink, {

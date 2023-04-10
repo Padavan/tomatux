@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 const mockStats = new Map();
 mockStats.set('2022-01-15', 1);
 mockStats.set('2022-01-20', 2);
@@ -19,7 +18,7 @@ const colorMapping: Record<string, HeatColor> = {
 };
  
 // TODO: use maxCount to do proper heatmap;
-const getHeatmapColor = (count: string):string => {
+const getHeatmapColor = (count: number):string => {
   if (count >= 8) return colorMapping.high;
   if (count < 8 && count >= 3) return colorMapping.medium;
   if (count > 0 && count < 3) return colorMapping.low;
@@ -29,7 +28,7 @@ const getHeatmapColor = (count: string):string => {
 const constructYearData = () => {
   const data = [];
 
-  let d = new Date();
+  const d = new Date();
   for (let i = 0; i < 366; i++) {
 
     d.setDate(d.getDate() - 1);

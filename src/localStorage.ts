@@ -11,7 +11,7 @@ export const loadState = () => {
 };
 
 export const saveState = (state: Record<string, unknown>):boolean => {
-  let status:boolean = false;
+  let status = false;
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);

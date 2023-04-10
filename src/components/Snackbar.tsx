@@ -4,7 +4,7 @@ import { RootState } from '../store';
 
 export const Snackbar = () => {
   const ui = useSelector((state: RootState) => state.ui);
-  const timer = useSelector((state: RootState) => state.timer);
+  // const timer = useSelector((state: RootState) => state.timer);
 
   if (!ui.notification) {
     return null;

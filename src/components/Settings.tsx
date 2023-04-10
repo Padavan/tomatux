@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveState } from '../localStorage';
 import { requestPermission, sendNotification, showThenHideSnackbar } from '../helpers/notification';
 import { RootState } from '../store';

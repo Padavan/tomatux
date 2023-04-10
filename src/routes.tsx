@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Timer } from './components/Timer';
 import { Settings } from './components/Settings';
 import { Statistics } from './components/Statistics';

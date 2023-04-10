@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { VFC } from 'react';
-import { NavLink, NavLinkProps } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Nav:VFC = () => {
 	const getClassName = ({ isActive }: { isActive: boolean }): string => isActive ? "active" : "";
