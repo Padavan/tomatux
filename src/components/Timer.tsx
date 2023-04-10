@@ -14,11 +14,13 @@ export const Timer = () => {
   }, []);
 
   return (
-    <section>
-      <h3>
-        {convertTime(timer.time)}
-      </h3>
-      <Buttons />
-    </section>
+    <div className="timerContainer">
+      <section>
+        <h3>
+          {convertTime(timer.time)}
+        </h3>
+        <Buttons />
+      </section>
+    </div>
   )
 };

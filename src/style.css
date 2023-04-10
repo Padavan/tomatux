@@ -29,7 +29,10 @@ html {
 #app {
   max-width: 720px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h3 {
@@ -105,32 +108,32 @@ nav {
   height: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: baseline;
   line-height: 1.5rem;
   padding: 0 0;
   margin: 1rem 0;
-  /*align-content: center;*/
+  align-content: space-between;
   border-bottom: 2px solid rgba(0,0,0,0.2);
 }
 
-nav a:first-child {
-  font-size: 1.5rem;
+/*nav a:first-child {
+  font-size: 1.2rem;
   margin: 0;
   padding: 0 1rem;
   font-weight: 300;
   align-self: flex-start;
   margin-right: auto;
 }
-
+*/
 
 nav a, nav a:visited {
   background: none;
   text-decoration: none;
-  padding: 0 0.5rem;
+  padding: 0;
   height: 2rem;
   color: hsla(0, 0%, 0%, 0.8);
-  min-width: 100px;
+  min-width: 90px;
   text-align:  center;
 }
 
@@ -147,6 +150,15 @@ nav a.active {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
+}
+
+.timerContainer {
+  flex: 1;
+  padding-top: 5rem;
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*  height: 100%;*/
 }
 
 .snackbar {
@@ -235,3 +247,4 @@ nav a.active {
   background-color: red;
   visibility: hidden;
 }
+

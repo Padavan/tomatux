@@ -7,10 +7,9 @@ export const Nav:VFC = () => {
 
 	return (
 		<nav>
-			<NavLink to='/' className={getClassName}>Pomodoro Timer</NavLink>
+			<NavLink to='/' className={getClassName}>Pomodoro</NavLink>
 			<NavLink to='/settings' className={getClassName}>Settings</NavLink>
 			<NavLink to='/statistics' className={getClassName}>Statistics</NavLink>
-			<NavLink to='/about' className={getClassName}>About</NavLink>
 		</nav>
 	);
 }

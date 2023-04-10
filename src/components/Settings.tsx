@@ -46,6 +46,14 @@ export const Settings = () => {
           <button onClick={() => sendNotification('Test notification')}> Test </button>
         </div>
       </div>
+      <p>
+        Source code is there: <a
+          href="https://github.com/Padavan/tomatux"
+          target="_blank">
+            github.com/Padavan/tomatux
+        </a>
+      </p>
+
       <section>
         <p>You can save settings for next session or restore default settings.</p>
         <div style={{ display: 'flex', justifyContent: 'cetner', margin: '0 auto'}}>
