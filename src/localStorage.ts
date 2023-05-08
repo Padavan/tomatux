@@ -1,12 +1,19 @@
-export const loadState = () => {
+import { ISettings } from "./reducers/timerReducer";
+
+type SavedData = {
+  settings: ISettings,
+  statistic: any,
+}
+
+export const loadState = ():SavedData | null => {
   try {
     const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
-      return undefined;
+      return null;
     }
     return JSON.parse(serializedState);
   } catch (err) {
-    return undefined;
+    return null;
   }
 };
 

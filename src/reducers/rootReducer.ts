@@ -5,11 +5,10 @@ import settings from './settingsReducer';
 import statistic from './statsReducer';
 import ui from './uiReducer';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   timer,
   settings,
   statistic,
   ui
 });
 
-export default rootReducer;
