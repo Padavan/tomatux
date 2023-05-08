@@ -1,5 +1,5 @@
 const esbuild = require('esbuild');
-const fs = require('fs');
+const fsp = require('fs').promises;
 const path = require('path');
 
 async function build() {
@@ -8,13 +8,13 @@ async function build() {
     await fs.promises.mkdir(buildFolder);
   }
 
-  fs.promises.cp(
+  fsp.cp(
     path.join(__dirname, 'public'),
     buildFolder,
     { recursive: true }
   );
 
-  let ctx = await esbuild.build({
+  await esbuild.build({
     bundle: true,
     logLevel: "info",
     entryPoints: ["src/index.tsx"],
@@ -27,5 +27,3 @@ async function build() {
 }
 
 build();
-
-// TODO tsc --noEmit in parallel

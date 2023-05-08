@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState} from 'react';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { convertTime } from '../helpers/convertTime';
+import { convertTime, getParts } from '../helpers/convertTime';
 import { Buttons } from './Buttons';
 import { RootState } from '../store';
 
@@ -15,12 +14,8 @@ export const Timer = () => {
 
   return (
     <div className="timerContainer">
-      <section>
-        <h3>
-          {convertTime(timer.time)}
-        </h3>
-        <Buttons />
-      </section>
+      <h3>{convertTime(timer.time)}</h3>
+      <Buttons />
     </div>
   )
 };

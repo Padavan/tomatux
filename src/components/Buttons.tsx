@@ -12,16 +12,18 @@ export const Buttons = () => {
   const timer: ITimer = useSelector((state: RootState) => state.timer);
 
   return (
-    <div className='buttonContainer'>
-      <button disabled={!timer.running} onClick={() => resetLoop(dispatch)} title="Reset clock and begin current phase from begining"> Reset </button>
-      {timer.stage === 'pause'
-          && <button onClick={() => dispatch({ type: 'SKIP_PAUSE' })} title="Skip pause and begin new pomodoro"> Skip </button>
+    <div className='buttons'>
+      {(timer.stage === 'pause' || timer.running) &&
+        <button
+          disabled={!timer.running}
+          onClick={() => resetLoop(dispatch)}
+          title="Reset clock and begin current phase from begining"
+        > Reset </button>
       }
       <button
         className='primary'
         disabled={timer.running}
         onClick={() => startLoop(dispatch)}
-        style={{ marginRight: 'auto', alignSelf: 'flex-end' }}
       >
         {(timer.stage === 'pomodoro') ? 'Start' : 'Take a break'
         }

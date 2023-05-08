@@ -1,5 +1,5 @@
 const esbuild = require('esbuild');
-const fs = require('fs');
+const fsp = require('fs').promises;
 const path = require('path');
 
 async function run() {
@@ -8,7 +8,7 @@ async function run() {
     await fs.promises.mkdir(buildFolder);
   }
 
-  fs.promises.cp(
+  fsp.cp(
     path.join(__dirname, 'public'),
     buildFolder,
     { recursive: true }
@@ -27,7 +27,7 @@ async function run() {
 
   await ctx.watch()
 
-  let { host, port } = await ctx.serve({
+  await ctx.serve({
     servedir: 'www',
   })
 }

@@ -57,7 +57,7 @@ export const Statistics = () => {
   const dayOfWeek = getDayOfWeek(dataList[0].date);
 
   return (
-    <section>
+    <div className='statistics'>
       <div className="grid">
         {Array.from(Array(dayOfWeek).keys()).map(cell => <span key={cell} className="invisibleCell" />)}
         {dataList.map(cell => (
@@ -70,6 +70,6 @@ export const Statistics = () => {
         ))}
       </div>
       <p> Developing in progress </p>
-    </section>
+    </div>
   );
 }

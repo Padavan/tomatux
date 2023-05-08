@@ -4,8 +4,9 @@ import { sendNotification, showThenHideSnackbar } from '../helpers/notification'
 import { RootState } from '../store';
 import finish from '../assets/bell.wav';
 
+const audio = new Audio(finish);
+
 const makeSound = () => {
-	const audio = new Audio(finish);
 	audio.play();
 }
 

@@ -8,7 +8,11 @@ export const sendNotification = (message: string) => {
   if (!('Notification' in window)) {
     console.log('Browser doesnt support web notification');
   } else if (Notification.permission === 'granted') {
-    // const notification = new Notification(message);
+    const notification = new Notification(
+      "Pomodoro timer",
+      {
+        body: message,
+      });
     console.info(message)
   }
 };

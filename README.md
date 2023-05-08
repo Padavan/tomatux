@@ -1,10 +1,10 @@
 # tomatux
 simple react/redux pomodoro timer
 
-
-##TODO
+## TODO
 
   *BASIC*
+
   - [x] basic design
   - [x] basic timer working
   - [x] settings save and load
@@ -16,20 +16,13 @@ simple react/redux pomodoro timer
 
   *QUALITY OF LIFE*
   - [x] make a PWA stuff and webapp for android
-  - [] custom messages for notifications
-  - [] statistics
-  - [] more styles
-  - [] sound of ticks
-  - [] mobile friendly input for numbers
+  - [ ] custom messages for notifications
+  - [ ] statistics
+  - [ ] more styles
+  - [x] sound of ticks
+  - [ ] mobile friendly input for numbers
   - [x] get rid of less
-
   - [x] migrate to ts
-
-## Bugs
-
-  some number states in redux are string;
-
-- [] storybook require babel with other bells and wistles
 
 
 ## Build

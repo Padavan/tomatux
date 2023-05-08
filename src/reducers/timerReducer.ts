@@ -27,9 +27,11 @@ const initialState: ITimer = {
 };
 
 const timer = (state = initialState, action: AnyAction ): ITimer => {
+  console.log("timerReducer", action);
   switch (action.type) {
     case 'TIMER_INIT':
-      return { ...state, time: state.settings['pomodoro'] }
+      console.log("init", state, action);
+      return { ...state, time: state.settings['pomodoro']*60 }
     case 'TIMER_START':
       return { ...state, running: true };
     case 'TICK':
@@ -39,7 +41,7 @@ const timer = (state = initialState, action: AnyAction ): ITimer => {
         ...state,
         running: false,
         completedPomodoros: state.stage === 'pomodoro' && !state.running ? state.completedPomodoros + 1 : state.completedPomodoros,
-        time: state.settings[getNextStage(state.stage)],
+        time: state.settings[getNextStage(state.stage)]*60,
         stage: getNextStage(state.stage),
       };
     case 'TIMER_SET':
@@ -47,13 +49,14 @@ const timer = (state = initialState, action: AnyAction ): ITimer => {
     case 'TIMER_RESET':
       return {
         ...state,
-        time: state.settings[state.stage],
+        stage: 'pomodoro',
+        time: state.settings[state.stage]*60,
         running: false,
       };
     case 'SKIP_PAUSE':
       return {
         ...state,
-        time: state.settings.pomodoro,
+        time: state.settings.pomodoro*60,
         stage: 'pomodoro',
         running: false,
       }
