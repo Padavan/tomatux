@@ -1,5 +1,5 @@
 const esbuild = require('esbuild');
-const fsp = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 
 async function build() {
@@ -8,7 +8,7 @@ async function build() {
     await fs.promises.mkdir(buildFolder);
   }
 
-  fsp.cp(
+  fs.promises.cp(
     path.join(__dirname, 'public'),
     buildFolder,
     { recursive: true }
