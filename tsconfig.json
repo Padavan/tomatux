@@ -9,10 +9,12 @@
       "esnext"
     ],
     "sourceMap": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
     "jsx": "react",
     "noEmit": false,
     "paths": {
@@ -29,6 +31,8 @@
     "webpack",
     "jest",
     "src/setupTests.ts",
-    "config"
+    "config",
+    "dist",
+    "www"
   ]
 }

@@ -61,8 +61,5 @@ typings/
 # next.js build output
 .next
 
-# esbuild production output
-dist
-
 # esbuild development output
 www
