@@ -23,6 +23,7 @@ export function loadSettings() {
  * @returns {boolean}
  **/
 export function saveSettings(state) {
+  console.log("localhstora saveSettings", state);
   let status = false;
   try {
     const serializedState = JSON.stringify(state);

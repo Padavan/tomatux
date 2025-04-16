@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useState, useContext, useRef, useCallback, useEffect } from 'react';
 import { useConfig } from './config.provider';
 import { useToast } from './toast.provider';
 import bellSound from '../assets/bell.wav';
@@ -32,6 +32,20 @@ const TimerProvider = (props) => {
 
   const currentTime = useRef(config.pomodoro*60);
   const currentRunning = useRef(false);
+
+  useEffect(() => {
+    if (running === true) return;
+
+    if (stage === 'pomodoro') {
+      setTime(config.pomodoro * 60);
+      currentTime.current = config.pomodoro * 60;
+    } 
+
+    if (stage === "pause") {
+      setTime(config.pause * 60);
+      currentTime.current = config.pause * 60;
+    }
+  }, [config]);
 
   const start = () => {
     console.log("--START");
@@ -77,6 +91,7 @@ const TimerProvider = (props) => {
   }
 
   const finish = useCallback(() => {
+    let message = '';
     if (stage === 'pomodoro') {
       setStage('pause');
       setTime(config.pause * 60);
@@ -84,11 +99,14 @@ const TimerProvider = (props) => {
       const today = new Date();
       const todayString = today.toISOString().slice(0, 10);
       updateStats(todayString);
+      message = "Pomodoro time has ended"
     } else {
       setStage('pomodoro');
       setTime(config.pomodoro * 60);
       currentTime.current = config.pomodoro * 60;
+      message = "Pause is finished"
     }
+    toast.show(message, true);
     audio.play();
 
 

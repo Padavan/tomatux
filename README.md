@@ -13,22 +13,23 @@ simple react/redux pomodoro timer
   - [x] seconds to minutes - minutes to seconds
   - [x] web notification
   - [x] production build
-  - [ ] remove redux, i don't like it in the end
+  - [x] remove redux, i don't like it in the end
   - [ ] https://developer.mozilla.org/en-US/docs/Web/API/Background_Tasks_API
-  - [ ] return notification api
-  - [ ] github pages hostign?
-  - [ ] react-router sucsks
+  - [x] return notification api
+  - [o] github pages hostign?
+  - [ ] swipe events
 
   *QUALITY OF LIFE*
   - [x] make a PWA stuff and webapp for android
   - [ ] custom messages for notifications
-  - [ ] statistics
+  - [x] statistics
   - [ ] more styles
-  - [x] sound of ticks
+  - [ ] sound of ticks
   - [ ] mobile friendly input for numbers
   - [x] get rid of less
   - [x] migrate to ts
   - [ ] localstorage save errors: json parse and localstorage unavailable
+  - [ ] dark mode/light mode
 
 
 ## Build

@@ -5,31 +5,26 @@ import { useToast } from 'src/providers/toast.provider';
 
 /** @typedef {import('../types').PomodoroSettings} PomodoroSettings */
 
-// import { RootState } from '../store';
-// import { ISettings } from '../reducers/settingsReducer';
-
-// const hoomanNames: Record<string, string> = {
-//   pomodoro: 'Duration of pomodoro',
-//   pause: 'Duration of pause',
-//   long_pause: 'Duration of long pause',
-//   loop: 'Number of pomodoro loops before long pause'
-// };
-
 export const Settings = () => {
   const { config, changeConfig, restore } = useConfig();
   const toast = useToast();
 
   const notificationButtonRef = useRef(null);
 
+  /** @param {React.FormEvent<HTMLFormElement>} event */
   const save = (event) => {
     event.preventDefault();
-    console.log("event", event);
-    // const status = saveState({ settings });
-    // if (status) {
-    //   showThenHideSnackbar('Settings saved', dispatch);
-    // } else {
-    //   showThenHideSnackbar('localStorage is unavailable', dispatch);
-    // }
+    const formData = new FormData(event.currentTarget);
+    // console.log("event", formData.getAll());
+
+    /** @type {PomodoroSettings} */ 
+    var newConfig = {
+      pomodoro: (/** @type {number} */(formData.get('pomodoro') ?? 25)),
+      pause: (/** @type {number} */(formData.get('pause') ?? 5)),
+    };
+
+    changeConfig(newConfig);
+
     toast.show('Settings saved');
   }
 
@@ -54,6 +49,9 @@ export const Settings = () => {
           id={'pomodoro'}
           type='number'
           name="pomodoro"
+          step={0.1}
+          min={0}
+          max={60}
           defaultValue={config.pomodoro}
         />
       </div>
@@ -66,6 +64,9 @@ export const Settings = () => {
           id="pause"
           type='number'
           name="pause"
+          step={0.1}
+          min={0}
+          max={60}
           defaultValue={config.pause}
         />
       </div>
@@ -74,7 +75,7 @@ export const Settings = () => {
         <label>Web Notification</label>
           <button type="button" ref={notificationButtonRef} onClick={() => handleNotificationEnable()} disabled={notificationCheckboxState()}> Enable </button>
       </div>
-      {/*<button onClick={() => sendNotification('Test notification')}> Test </button>*/}
+      <button type="button" onClick={() => sendNotification('Test notification')}> Test </button>
 
         <p>Save settings for next session or restore default settings.</p>
         <div className='buttons'>

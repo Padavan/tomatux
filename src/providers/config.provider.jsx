@@ -3,11 +3,10 @@ import { loadSettings, saveSettings } from 'src/helpers/localStorage';
 
 /** @typedef {import('../types').PomodoroSettings} PomodoroSettings */
 
-// const savedSettings = loadSettings();
-const savedSettings = { pomodoro: 0.2, pause: 0.1 };
+const savedSettings = loadSettings();
 
 /** @type {PomodoroSettings} */
-const DEFAULT_SETTINGS = { pomodoro: 0.2, pause: 0.1 };
+const DEFAULT_SETTINGS = { pomodoro: 25, pause: 5 };
 
 const mergedSettings = {
   pomodoro: savedSettings?.pomodoro ?? DEFAULT_SETTINGS.pomodoro,

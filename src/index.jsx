@@ -30,8 +30,8 @@ const registerSW = () => {
   }
 };
 
-registerSW();
-// unregister();
+// registerSW();
+unregister();
 
 const rootContainer = document.getElementById('root');
 if (rootContainer) {
