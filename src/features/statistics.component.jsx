@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Heatmap } from './heatmap.component';
+import { Heatmap } from 'src/features/heatmap';
 import { getStats } from 'src/helpers/localStorage';
 
 export function Statistics() {

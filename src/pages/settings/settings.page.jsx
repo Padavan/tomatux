@@ -1,12 +1,15 @@
-import React, { useRef }  from 'react';
-import { requestPermission, sendNotification } from '../helpers/notification';
+import React, { useRef, useState } from 'react';
+import { requestPermission, sendNotification, isNotificationAllowed } from 'src/helpers/notification';
 import { useConfig } from 'src/providers/config.provider';
 import { useToast } from 'src/providers/toast.provider';
 
-/** @typedef {import('../types').PomodoroSettings} PomodoroSettings */
+/** @typedef {import('../../types').PomodoroSettings} PomodoroSettings */
 
-export const Settings = () => {
+
+
+export const SettingsPage = () => {
   const { config, changeConfig, restore } = useConfig();
+  const [isNotificationEnabled, setIsNotificationEnabled] = useState(isNotificationAllowed());
   const toast = useToast();
 
   const notificationButtonRef = useRef(null);
@@ -21,6 +24,7 @@ export const Settings = () => {
     var newConfig = {
       pomodoro: (/** @type {number} */(formData.get('pomodoro') ?? 25)),
       pause: (/** @type {number} */(formData.get('pause') ?? 5)),
+      theme: (/** @type {'system' | 'dark' | 'light'} */(formData.get('theme') ?? 'system')),
     };
 
     changeConfig(newConfig);
@@ -28,19 +32,19 @@ export const Settings = () => {
     toast.show('Settings saved');
   }
 
-  const notificationCheckboxState = () => Notification.permission === 'granted';
-
-  const handleNotificationEnable = () => {
-    if (notificationCheckboxState() && notificationButtonRef.current) {
-      notificationButtonRef.current.disabled = true
-    } else {
-      requestPermission()
-    }
+  const handleNotificationEnable = async () => {
+    requestPermission(() => {
+      if (Notification.permission === "granted") {
+        setIsNotificationEnabled(true);
+      }
+    })
   }
+
+  const showWebNotificationToggle = Notification.permission !== "denied";
 
   return (
     <section>
-      <form onSubmit={save}>
+      <form id="config" onSubmit={save}>
       <div className='option'>
         <label htmlFor={'pomodoro'}>
           Duration of pomodoro
@@ -72,10 +76,34 @@ export const Settings = () => {
       </div>
 
       <div className='option'>
-        <label>Web Notification</label>
-          <button type="button" ref={notificationButtonRef} onClick={() => handleNotificationEnable()} disabled={notificationCheckboxState()}> Enable </button>
+        <label htmlFor='theme'>
+          Duration of theme
+        </label>
+        <select
+          id="theme"
+          name="theme"
+          form="config"
+          defaultValue={config.theme}
+        >
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
       </div>
-      <button type="button" onClick={() => sendNotification('Test notification')}> Test </button>
+
+      {showWebNotificationToggle && (
+        <div className='option'>
+          <label>Web Notification</label>
+            <input
+              type="checkbox"
+              ref={notificationButtonRef}
+              checked={isNotificationEnabled}
+              onChange={() => handleNotificationEnable()}
+              disabled={isNotificationEnabled}
+            />
+        </div>
+      )}
+        {/*<button type="button" onClick={() => sendNotification('Test notification')}> Test </button>*/}
 
         <p>Save settings for next session or restore default settings.</p>
         <div className='buttons'>

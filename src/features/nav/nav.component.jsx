@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
+import './nav.styles.css';
+
+/***
+ * @param {boolean} isActive
+ * @returns {string}
+ **/
+const getClassName = (isActive) => isActive ? "active" : "";
 
 export function Nav() {
-	/***
-	 * @param {boolean} isActive
-	 * @returns {string}
-	 **/
-	const getClassName = (isActive) => isActive ? "active" : "";
-
 	return (
 		<nav>
 			<NavLink exact to='/' className={getClassName}>Pomodoro</NavLink>

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useContext } from 'react';
-import { Snackbar } from 'src/components/snackbar.component';
-import { sendNotification } from '../helpers/notification';
+import { Snackbar } from 'src/features/snackbar.component';
+import { sendNotification } from 'src/helpers/notification';
 
 const TOAST_TIME = 3000;
 
@@ -35,7 +35,7 @@ const ToastProvider = (props) => {
 
  return (
    <ToastContext.Provider value={{ show: showToast }}>
-     {props.children},
+     {props.children}
      <Snackbar show={isShown} message={toastMessage} />
    </ToastContext.Provider>
  );

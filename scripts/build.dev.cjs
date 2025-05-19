@@ -10,7 +10,7 @@ const path =  require('node:path');
   var BUILD_OPTIONS = {
     bundle: true,
     logLevel: "info",
-    entryPoints: ["src/index.jsx"],
+    entryPoints: ["src/index.js"],
     outfile: "www/app.js",
     minify: false,
     treeShaking: true,

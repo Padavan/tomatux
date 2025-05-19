@@ -14,4 +14,16 @@ function convertTime(seconds) {
 	return `${zeroPad(Math.floor(seconds / 60))}:${zeroPad(seconds % 60)}`
 }
 
-export {convertTime}
+
+/***
+ * @param {number} sec
+ * @returns {[string, string]}
+ **/
+function getParts(sec) {
+	const seconds = zeroPad(sec  % 60);
+	const minutes = zeroPad(Math.floor(sec / 60));
+	return [minutes, seconds];
+}
+
+
+export {convertTime, getParts}

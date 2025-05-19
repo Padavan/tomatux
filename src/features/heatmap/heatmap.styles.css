@@ -1,0 +1,65 @@
+ 
+.Heatmap_grid {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: var(--cell-gap);
+  flex-wrap: wrap;
+  width: 240px;
+}
+
+.Heatmap_cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid rgb(27, 31, 35);
+  border-radius: 2px;
+}
+
+.Heatmap_hightlightedCell {
+  border: 2px solid black;
+}
+
+.Heatmap_invisibleCell {
+  /*  width: 11px;*/
+  /*  height: 11px;*/
+  /*  background-color: red;*/
+  visibility: hidden;
+}
+
+.Heatmap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  overflow-x: scroll;
+  height: 100%;
+  overflow: auto;
+  padding: 1rem;
+  row-gap: var(--cell-gap);
+  column-gap: var(--cell-gap);
+}
+
+.Heatmap_monthcol {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--cell-gap);
+  flex-direction: column;
+}
+
+.Heatmap_month {
+  min-height: var(--cell-size);
+  line-height: var(--cell-size);
+  padding: auto;
+  border: none;
+  outline: none;
+  height: var(--cell-size);
+  width: 50px;
+  min-width: 50px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.Heatmap_hightlightedMonth {
+  border-bottom: 2px solid black;
+}

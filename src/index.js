@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import { App } from './app';
 
-import App from './app';
-import './style.css';
 import { register, unregister } from './serviceWorker';
+// import './pico.css';
+import './style.css';
 
 const serviceWorkerConfig = {};
 // register(serviceWorkerConfig);
@@ -36,5 +36,5 @@ unregister();
 const rootContainer = document.getElementById('root');
 if (rootContainer) {
   const root = createRoot(rootContainer);
-  root.render(<App />);
+  root.render(App());
 }

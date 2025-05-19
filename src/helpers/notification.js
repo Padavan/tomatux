@@ -1,9 +1,11 @@
-function requestPermission() {
-  Notification.requestPermission();
+
+/** @param {Function} callback */
+export function requestPermission(callback) {
+  Notification.requestPermission(callback);
 };
 
 /** @param {string} message */
-function sendNotification(message) {
+export function sendNotification(message) {
   if (!('Notification' in window)) {
     console.log('Browser doesnt support web notification');
   } else if (Notification.permission === 'granted') {
@@ -16,5 +18,7 @@ function sendNotification(message) {
   }
 };
 
-
-export { requestPermission, sendNotification };
+/** @returns {boolean} */
+export function isNotificationAllowed() {
+  return Notification.permission === 'granted';
+}

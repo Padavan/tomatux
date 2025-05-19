@@ -6,11 +6,12 @@ import { loadSettings, saveSettings } from 'src/helpers/localStorage';
 const savedSettings = loadSettings();
 
 /** @type {PomodoroSettings} */
-const DEFAULT_SETTINGS = { pomodoro: 25, pause: 5 };
+const DEFAULT_SETTINGS = { pomodoro: 25, pause: 5, theme: 'system' };
 
 const mergedSettings = {
   pomodoro: savedSettings?.pomodoro ?? DEFAULT_SETTINGS.pomodoro,
   pause:savedSettings?.pause ?? DEFAULT_SETTINGS.pause,
+  theme: savedSettings?.theme ?? 'system',
 }
 
 const ConfigContext = React.createContext({
@@ -27,6 +28,7 @@ const ConfigProvider = (props) => {
   const changeConfig = useCallback(
     /** @param {PomodoroSettings} newConfig */
     (newConfig) => {
+      console.log("newConfig", newConfig)
       saveSettings(newConfig);
       setConfig(newConfig);
     },
@@ -42,7 +44,7 @@ const ConfigProvider = (props) => {
 
  return (
    <ConfigContext.Provider value={{config, changeConfig, restore }}>
-     {props.children},
+     {props.children}
    </ConfigContext.Provider>
  );
 }

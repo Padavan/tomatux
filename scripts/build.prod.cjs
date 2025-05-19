@@ -10,7 +10,7 @@ const path = require('path');
   var BUILD_OPTIONS = {
       bundle: true,
       logLevel: "info",
-      entryPoints: ["src/index.jsx"],
+      entryPoints: ["src/index.js"],
       outfile: "dist/app.js",
       loader: { '.wav': 'file' },
       minify: true,

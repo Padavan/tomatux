@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import './heatmap.styles.css';
 
 const monthMapping = {
   '01': 'Jan',
@@ -113,12 +114,14 @@ const Heatmap = (props) => {
     })
   }
 
+  console.log("hightlightedMonth", hightlightedMonth);
+
   return (
-    <div className='heatmap'>
-      <div className="month-col">
+    <div className='Heatmap'>
+      <div className="Heatmap_monthcol">
         {monthData.map((mon, i) => (
           <button
-            className={`month ${mon && mon === hightlightedMonth ? "hightlightedMonth" : ""} `}
+            className={`Heatmap_month ${mon && mon === hightlightedMonth ? "Heatmap_hightlightedMonth" : ""} `}
             onClick={() => {if (mon) handleHighlighMonth(mon)}}
             key={i}
           >
@@ -126,15 +129,15 @@ const Heatmap = (props) => {
           </button>
         ))}
       </div>
-      <div className="grid">
-        {getEmptyDays(dayOfWeek).map(cell => <span key={cell} className="cell invisibleCell" />)}
+      <div className="Heatmap_grid">
+        {getEmptyDays(dayOfWeek).map(cell => <span key={cell} className="Heatmap_cell Heatmap_invisibleCell" />)}
         {dataList.map(date => {
           const count = getCount(props.stats, date);
           const month = date.slice(5,7);
           return (
             <span
               key={date}
-              className={`cell month-${month} ${month == hightlightedMonth ? "hightlightedCell" : ""}`}
+              className={`Heatmap_cell month-${month} ${month == hightlightedMonth ? "Heatmap_hightlightedCell" : ""}`}
               title={`Finished ${count} on ${date}`}
               style={{ backgroundColor: getHeatmapColor(count) }}
             />
