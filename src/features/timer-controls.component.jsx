@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTimer } from 'src/providers/timer.provider';
+import { useTimer } from '../providers/timer.provider';
 
 export const TimerControls = () => {
   const timer = useTimer();

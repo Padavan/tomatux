@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import './heatmap.styles.css';
 
-const monthMapping = {
+/** @type {Record<string, string>} */
+var monthMapping = {
   '01': 'Jan',
   '02': 'Feb',
   '03': 'Mar',
@@ -16,29 +17,19 @@ const monthMapping = {
   '12': 'Dec',
 }
 
-/** @typedef {'#EBEDF0' | '#639974' | '#216e39' | '#134222'} HeatColor */
-
 /** @type {Date} */
 const today = new Date();
 
-/** @type {Record<string, HeatColor>} */
-const colorMapping = {
-  default: '#EBEDF0',
-  low: '#639974',
-  medium: '#216e39',
-  high: '#134222',
-};
- 
 // TODO: use maxCount to do proper heatmap;
 /***
  * @param {number} count
  * @returns {string}
  **/
 const getHeatmapColor = (count) => {
-  if (count >= 8) return colorMapping.high;
-  if (count < 8 && count >= 3) return colorMapping.medium;
-  if (count > 0 && count < 3) return colorMapping.low;
-  return colorMapping.default;
+  if (count >= 8) return '#134222';
+  if (count < 8 && count >= 3) return '#216e39';
+  if (count > 0 && count < 3) return '#639974';
+  return 'transparent';
 }
 
 /** @returns {string[]} */
@@ -73,16 +64,24 @@ function getCount(stats, date) {
  * @returns string[]
  **/
 function constructMonthData(days) {
-  const arr = days.filter((value, index) => index % 7 == 0).map(s => s.slice(5,7));
+  console.log("days", days);
+  /** @type {string[]} */
+  var arr = [];
+  days.forEach((s, index) => {
+    if (index % 7 === 0) {
+      arr.push(s.slice(5,7));
+    }
+  });
+  console.log("arr", arr);
   let current = '';
   let filteredArr = [];
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] !== current) {
-      filteredArr.push(arr[i]);
+      filteredArr.push(arr[i] ?? '');
     } else {
       filteredArr.push('');
     }
-    current = arr[i];
+    current = arr[i] ?? '';
   }
 
   return filteredArr;
@@ -99,7 +98,7 @@ function getEmptyDays(dataStartWithDay) {
 const Heatmap = (props) => {
   const dataList = useMemo(() => constructYearData(), []);
   const monthData = useMemo(() => constructMonthData(dataList), [dataList]);
-  const dayOfWeek = useMemo(() => getDayOfWeek(dataList[0]), [dataList]);
+  const dayOfWeek = useMemo(() => getDayOfWeek(dataList[0] ?? ''), [dataList]);
 
   const [hightlightedMonth, setHightlightedMonth] = useState('');
 
@@ -121,9 +120,9 @@ const Heatmap = (props) => {
       <div className="Heatmap_monthcol">
         {monthData.map((mon, i) => (
           <button
+            key={i}
             className={`Heatmap_month ${mon && mon === hightlightedMonth ? "Heatmap_hightlightedMonth" : ""} `}
             onClick={() => {if (mon) handleHighlighMonth(mon)}}
-            key={i}
           >
             {monthMapping[mon]}
           </button>

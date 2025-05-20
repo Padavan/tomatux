@@ -1,17 +1,17 @@
 .Layout_system {
-	color-scheme: light dark;
+  color-scheme: light dark;
 } 
 
 .Layout_dark {
-	color-scheme: dark;
+  color-scheme: dark;
 }
 
 .Layout_light {
-	color-scheme: light;
+  color-scheme: light;
 }
 
 .Layout {
-	background-color: light-dark(var(--bg-gray), var(--black));
-	flex: 1;
-	overflow-y: auto;
+  background-color: light-dark(var(--bg-gray), var(--black));
+  flex: 1;
+  overflow-y: auto;
 }

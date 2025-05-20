@@ -1,15 +1,15 @@
 import React, { useState, useCallback, useContext } from 'react';
-import { Snackbar } from 'src/features/snackbar.component';
-import { sendNotification } from 'src/helpers/notification';
+import { Snackbar } from '../features/snackbar.component';
+import { sendNotification } from '../helpers/notification';
 
 const TOAST_TIME = 3000;
 
 const ToastContext = React.createContext({
   /**
-   * @param {string} message
-   * @param {boolean} [global] - send WebAPI notification as well
+   * @param {string} _message
+   * @param {boolean} [_global] - send WebAPI notification as well
    * */
-  show: (message, global) => {},
+  show: (_message, _global) => {},
 });
 
 const globalNotificationEnabled = () => Notification.permission === 'granted';

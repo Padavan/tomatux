@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef, useCallback, useEffect } from 'rea
 import { useConfig } from './config.provider';
 import { useToast } from './toast.provider';
 import bellSound from '../assets/bell.wav';
-import { updateStats } from 'src/helpers/localStorage';
+import { updateStats } from '../helpers/localStorage';
 
 const audio = new Audio(bellSound);
 

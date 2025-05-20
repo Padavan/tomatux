@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Switch, Route } from "react-router-dom";
 
-import { useConfig } from 'src/providers/config.provider';
+import { useConfig } from '../../providers/config.provider';
 import "./layout.styles.css";
 
 
-import { ToastProvider } from 'src/providers/toast.provider';
-import { TimerProvider } from 'src/providers/timer.provider';
-import { TimerPage } from 'src/pages/timer';
-import { SettingsPage } from 'src/pages/settings';
-import { StatisticPage } from 'src/pages/statistic';
-import { Nav } from 'src/features/nav';
+import { ToastProvider } from '../../providers/toast.provider';
+import { TimerProvider } from '../../providers/timer.provider';
+import { TimerPage } from '../../pages/timer';
+import { SettingsPage } from '../../pages/settings';
+import { StatisticPage } from '../../pages/statistic';
+import { Nav } from '../../features/nav';
 
 export function Layout() {
   const { config } = useConfig();

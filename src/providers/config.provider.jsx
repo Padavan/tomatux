@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useContext } from 'react';
-import { loadSettings, saveSettings } from 'src/helpers/localStorage';
+import { loadSettings, saveSettings } from '../helpers/localStorage';
 
 /** @typedef {import('../types').PomodoroSettings} PomodoroSettings */
 
@@ -16,8 +16,8 @@ const mergedSettings = {
 
 const ConfigContext = React.createContext({
   config: mergedSettings,
-  /** @param {PomodoroSettings} config */
-  changeConfig: (config) => {},
+  /** @param {PomodoroSettings} _config */
+  changeConfig: (_config) => {},
   restore: () => {}
 });
 

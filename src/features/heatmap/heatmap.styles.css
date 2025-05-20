@@ -1,16 +1,21 @@
- 
+:root {
+  --cell-size: 25px;
+  --cell-gap: 4px;
+}
+
 .Heatmap_grid {
   display: flex;
   flex-direction: row-reverse;
   gap: var(--cell-gap);
   flex-wrap: wrap;
-  width: 240px;
+  width: calc(var(--cell-size) * 7 + var(--cell-gap) * 6);
 }
 
 .Heatmap_cell {
   width: var(--cell-size);
   height: var(--cell-size);
   border: 1px solid rgb(27, 31, 35);
+  background: transparent;
   border-radius: 2px;
 }
 
@@ -19,9 +24,6 @@
 }
 
 .Heatmap_invisibleCell {
-  /*  width: 11px;*/
-  /*  height: 11px;*/
-  /*  background-color: red;*/
   visibility: hidden;
 }
 

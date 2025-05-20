@@ -1,6 +1,6 @@
 import React from 'react';
-import { Heatmap } from 'src/features/heatmap';
-import { getStats } from 'src/helpers/localStorage';
+import { Heatmap } from '../../features/heatmap';
+import { getStats } from '../../helpers/localStorage';
 
 export function StatisticPage() {
   const stats = getStats();

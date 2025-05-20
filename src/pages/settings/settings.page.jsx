@@ -1,11 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { requestPermission, sendNotification, isNotificationAllowed } from 'src/helpers/notification';
-import { useConfig } from 'src/providers/config.provider';
-import { useToast } from 'src/providers/toast.provider';
+import { requestPermission, isNotificationAllowed } from '../../helpers/notification';
+import { useConfig } from '../../providers/config.provider';
+import { useToast } from '../../providers/toast.provider';
 
 /** @typedef {import('../../types').PomodoroSettings} PomodoroSettings */
-
-
 
 export const SettingsPage = () => {
   const { config, changeConfig, restore } = useConfig();
@@ -103,8 +101,6 @@ export const SettingsPage = () => {
             />
         </div>
       )}
-        {/*<button type="button" onClick={() => sendNotification('Test notification')}> Test </button>*/}
-
         <p>Save settings for next session or restore default settings.</p>
         <div className='buttons'>
           <button type="button" onClick={restore}> Restore default </button>

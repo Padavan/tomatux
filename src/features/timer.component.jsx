@@ -1,7 +1,7 @@
-import React, { useEffect, useState} from 'react';
-import { convertTime, getParts } from '../helpers/convertTime';
+import React from 'react';
+import { getParts } from '../helpers/convertTime';
 import { TimerControls } from './timer-controls.component';
-import { useTimer } from 'src/providers/timer.provider';
+import { useTimer } from '../providers/timer.provider';
 
 export const Timer = () => {
   const timer = useTimer();

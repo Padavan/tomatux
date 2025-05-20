@@ -29,7 +29,7 @@ simple react/redux pomodoro timer
   - [x] get rid of less
   - [x] migrate to ts
   - [ ] localstorage save errors: json parse and localstorage unavailable
-  - [ ] dark mode/light mode
+  - [x] dark mode/light mode
 
 
 ## Build

@@ -1,12 +1,12 @@
 import { createRoot } from 'react-dom/client';
 import { App } from './app';
 
-import { register, unregister } from './serviceWorker';
-// import './pico.css';
+import { register } from './serviceWorker';
 import './style.css';
 
-const serviceWorkerConfig = {};
-// register(serviceWorkerConfig);
+/** @type {Record<string, string>} */
+var serviceWorkerConfig = {};
+register(serviceWorkerConfig);
 
 const registerSW = () => {
   if ('serviceWorker' in navigator) {
@@ -30,8 +30,8 @@ const registerSW = () => {
   }
 };
 
-// registerSW();
-unregister();
+registerSW();
+// unregister();
 
 const rootContainer = document.getElementById('root');
 if (rootContainer) {

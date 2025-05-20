@@ -1,38 +1,36 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "build",
-    "module": "es6",
-    "target": "es6",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
-    "sourceMap": true,
-    "rootDir": ".",
-    "strict": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "es2015",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "jsx": "react",
     "allowJs": true,
     "checkJs": true,
-    "jsx": "react",
-    "noEmit": false,
-    "paths": {
-      "src/*": [
-        "src/*"
-      ]
-    }
+    "strict": true,
+    "strictNullChecks" : true,
+    "strictFunctionTypes" : true,
+    "strictBindCallApply" : true,
+    "strictPropertyInitialization" : true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "noImplicitAny" : true,
+    "noImplicitThis" : true,
+    "useUnknownInCatchVariables" : true,
+    "alwaysStrict" : true,
+    "noUnusedLocals" : true,
+    "noUnusedParameters" : true,
+    "exactOptionalPropertyTypes" : true,
+    "noImplicitReturns" : true,
+    "noFallthroughCasesInSwitch" : true,
+    "noUncheckedIndexedAccess" : true,
+    "noImplicitOverride" : true,
+    "noPropertyAccessFromIndexSignature" : true,    
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
-    "config",
-    "dist",
-    "www"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }
