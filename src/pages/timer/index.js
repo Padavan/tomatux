@@ -1,1 +1,1 @@
-export { TimerPage } from './timer.page'; 
+export { TimerPage } from "./timer.page";

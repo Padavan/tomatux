@@ -1,14 +1,20 @@
-import * as React from 'react';
-import { HashRouter } from "react-router-dom";
-import { ConfigProvider } from './providers/config.provider';
-import { Layout } from './pages/layout';
+import * as React from "react";
+import { ConfigProvider } from "./providers/config.provider";
+import { ToastProvider } from "./providers/toast.provider";
+import { TimerProvider } from "./providers/timer.provider";
+import { Layout } from "./pages/layout";
+import { BrowserRouter } from "./features/router";
 
 export function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ConfigProvider>
-        <Layout />
+        <ToastProvider>
+          <TimerProvider>
+            <Layout />
+          </TimerProvider>
+        </ToastProvider> 
       </ConfigProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
-};
+}

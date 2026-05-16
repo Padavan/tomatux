@@ -7,16 +7,19 @@ const path = require('path');
   const publicFolder = path.resolve('public');
 
   /** @type {import('esbuild').BuildOptions} */
-  var BUILD_OPTIONS = {
-      bundle: true,
-      logLevel: "info",
-      entryPoints: ["src/index.js"],
-      outfile: "dist/app.js",
-      loader: { '.wav': 'file' },
-      minify: true,
-      treeShaking: true,
-      format: 'esm',
-      sourcemap: false,
+  const BUILD_OPTIONS = {
+    bundle: true,
+    entryPoints: ["src/index.js"],
+    format: 'esm',
+    loader: { '.wav': 'file' },
+    logLevel: "info",
+    minify: true,
+    outfile: "dist/app.js",
+    sourcemap: false,
+    treeShaking: true,
+    define: {
+      'process.env.NODE_ENV': '"production"',
+    }
   };
 
 

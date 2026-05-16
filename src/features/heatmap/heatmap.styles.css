@@ -14,9 +14,14 @@
 .Heatmap_cell {
   width: var(--cell-size);
   height: var(--cell-size);
-  border: 1px solid rgb(27, 31, 35);
+  border: 1px solid rgb(27, 31, 35) !important;
   background: transparent;
-  border-radius: 2px;
+  border-radius: 2px;;
+  border-bottom: 1px solid rgb(27,31,35);
+
+  &:hover {
+    border-color: var(--accent-color) !important;
+  }
 }
 
 .Heatmap_hightlightedCell {
@@ -62,6 +67,7 @@
   background: transparent;
 }
 
-.Heatmap_hightlightedMonth {
+/*.Heatmap_hightlightedMonth {
   border-bottom: 2px solid black;
 }
+*/

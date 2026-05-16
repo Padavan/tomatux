@@ -9,30 +9,23 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
-    "@types/react-router-dom": "^5.3.3",
-    "@types/react-transition-group": "^4.4.12",
-    "esbuild": "^0.25.2",
-    "eslint": "^9.24.0",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.0.0",
-    "react-transition-group": "^4.4.5",
-    "stylelint": "^14.6.1",
-    "typescript": "^5.8.3"
-  },
-  "dependencies": {
     "@types/history": "^4.7.11",
+    "@types/node": "^18.15.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "oxfmt": "^0.49.0",
+    "oxlint": "^1.64.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.2",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "^6.0.3"
   },
   "scripts": {
     "start": "node scripts/build.dev.cjs",
-    "lint": "eslint src",
-    "lint:styles": "stylelint 'src/**/*.css'",
+    "lint": "oxlint ./src",
+    "fmt": "oxfmt ./src",
     "build": "node scripts/build.prod.cjs",
     "typecheck": "tsc --noEmit"
   }

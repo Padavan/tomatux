@@ -1,1 +1,1 @@
-export { Heatmap } from './heatmap.component'; 
+export { Heatmap } from "./heatmap.component";

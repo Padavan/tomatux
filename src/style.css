@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -13,15 +14,25 @@ html, body {
   font-feature-settings: "kern", "liga", "clig", "calt";
   min-height: 100%;
   line-height: 1.4;
-  font-family: Segoe UI, -apple-system, BlinkMacSystemFont, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    Segoe UI,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 
 :root {
-  --accent-color: #DF0003;
+  --accent-color: #df0003;
   --accent-light: #f2999a;
   --accent-heavy: #b20002;
-  --gray: rgba(0,0,0,0.2);
+  --gray: rgba(0, 0, 0, 0.2);
   /*  --cell-size: 30px;*/
   /*  --cell-gap: 5px;*/
   --beige: #f4f1ec;
@@ -55,7 +66,6 @@ html {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  
 }
 
 h3 {
@@ -92,51 +102,14 @@ main {
   align-content: center;
 }
 
-input[type=number] {
-  height: 2rem;
-  outline: none;
-  border: 1px solid var(--gray);
-}
 
-select {
-  border-radius: 0;
-  appearance: none;
-  padding: 8px 8px;
-  height: 2rem;
-  width: 100px;
-  box-shadow: none;
-  outline: none;
-  border: 1px solid var(--gray);
-  background-image: var(--pico-icon-chevron);
-  background-position: center right 0.75rem;
-  background-size: 1rem auto;
-  background-repeat: no-repeat;
-}
-
-select option {
-  /*  height: 48px;*/
-  font-size: 1rem;
-}
-
-section {
-  align-content: center;
-  flex: 1;
-  display: flex;
-  padding: 0.5rem;
-  flex-direction: column;
-  justify-content: center;
+.tPrimary {
   color: light-dark(var(--black), var(--beige));
-
-  /*  background: light-dark(var(--beige), var(--black));*/
 }
 
-
-
-.tPrimary { color: light-dark(var(--black), var(--beige)); }
-
-.tGray { color: var(--gray); }
-
-
+.tGray {
+  color: var(--gray);
+}
 
 button {
   height: 3rem;
@@ -161,14 +134,16 @@ button.primary:hover {
   color: #fff;
 }
 
-button.disabled, button:disabled, button:disabled:hover {
+button.disabled,
+button:disabled,
+button:disabled:hover {
   border: 2px solid #c9c9c9;
   background: light-dark(var(--bg-gray-disabled), var(--black-disabled));
   color: #b0b0b0;
   cursor: auto;
 }
-
-input[type=checkbox]::before {
+/*
+input[type="checkbox"]::before {
   content: "";
   display: block;
   aspect-ratio: 1;
@@ -177,17 +152,14 @@ input[type=checkbox]::before {
   border: 1px solid transparent;
   background-color: var(--beige);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  transition: margin .1s ease-in-out;
-
+  transition: margin 0.1s ease-in-out;
 }
 
-[type=checkbox],
-[type=radio] {
+[type="checkbox"],
+[type="radio"] {
   appearance: none;
   width: 2.25em;
   height: 1.25em;
-  /*  margin-top: -0.125em;*/
-  /*  margin-inline-end: 0.5em;*/
   margin-top: 0.1em;
   border-width: 1px;
   background-color: var(--gray);
@@ -198,15 +170,13 @@ input[type=checkbox]::before {
   cursor: pointer;
 }
 
-[type=checkbox]:checked {
+[type="checkbox"]:checked {
   background-color: var(--accent-color);
 }
 
-[type=checkbox]:checked::before {
+[type="checkbox"]:checked::before {
   margin-inline-start: calc(2.25em - 1.25em);
-}
-
-
+}*/
 
 .segment {
   display: grid;
@@ -243,7 +213,9 @@ input[type=checkbox]::before {
   min-width: 300px;
   box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
   opacity: 1;
-  transition: visibility 300ms ease-in-out, opacity 300ms ease-in-out;
+  transition:
+    visibility 300ms ease-in-out,
+    opacity 300ms ease-in-out;
 }
 
 .snackbar__hidden {
@@ -263,17 +235,14 @@ input[type=checkbox]::before {
   box-shadow: 0 3px 12px rgba(17, 17, 17, 0.8);
 }
 
-
-
 .buttons {
   display: flex;
   gap: 1rem;
   margin: 0 auto;
   flex-direction: row;
   justify-content: center;
+  justify-content: space-between;
 }
-
-
 
 input {
   border-radius: 0;
@@ -286,8 +255,6 @@ input {
   align-items: center;
   color: light-dark(var(--black), var(--beige));
 }
-
-
 
 /* TRANSITIONS */
 
@@ -307,8 +274,8 @@ input {
 
 .right-to-left-enter-active {
   transform: translateX(0);
-  transition:all 300ms ease;
-}      
+  transition: all 300ms ease;
+}
 
 .right-to-left-exit {
   transform: translateX(0);
@@ -316,8 +283,8 @@ input {
 
 .right-to-left-exit-active {
   transform: translateX(-100%);
-  transition:all 300ms ease;
-}      
+  transition: all 300ms ease;
+}
 
 .left-to-right-enter {
   transform: translateX(-100%);
@@ -325,8 +292,8 @@ input {
 
 .left-to-right-enter-active {
   transform: translateX(0);
-  transition:all 300ms ease;
-}      
+  transition: all 300ms ease;
+}
 
 .left-to-right-exit {
   transform: translateX(0);
@@ -334,10 +301,10 @@ input {
 
 .left-to-right-exit-active {
   transform: translateX(100%);
-  transition:all 300ms ease;
+  transition: all 300ms ease;
 }
 
-label {
+/*label {
   display: block;
   margin-right: auto;
 }
@@ -345,7 +312,7 @@ label {
 label input {
   display: block;
 }
-
+*/
 .option {
   display: flex;
   flex-direction: row;
@@ -353,10 +320,9 @@ label input {
   align-items: center;
   height: 4rem;
   border-bottom: 1px solid var(--gray);
+
+  & * {
+    flex: 1;
+  }
 }
 
-.option input {
-  /*  height: 3rem;*/
-  text-align: center;
-  /*  width: 100px;*/
-}

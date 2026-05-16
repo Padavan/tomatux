@@ -7,20 +7,23 @@ const path =  require('node:path');
   const publicFolder = path.resolve('public');
 
   /** @type {import('esbuild').BuildOptions} */
-  var BUILD_OPTIONS = {
+  const BUILD_OPTIONS = {
     bundle: true,
-    logLevel: "info",
     entryPoints: ["src/index.js"],
-    outfile: "www/app.js",
-    minify: false,
-    treeShaking: true,
     format: 'esm',
-    sourcemap: true,
     loader: { '.wav': 'file' },
+    logLevel: "info",
+    minify: false,
+    outfile: "www/app.js",
+    sourcemap: false,
+    treeShaking: true,
+    // define: {
+    //   'process.env.NODE_ENV': '"production"',
+    // }
   };
 
   /** @type {import('esbuild').ServeOptions} */
-  var SERVICE_OPTIONS = {
+  const SERVICE_OPTIONS = {
     servedir: 'www',
     fallback: "www/index.html",
     host: "127.0.0.1",

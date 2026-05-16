@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 /***
  * @typedef {Object} Props
@@ -13,10 +13,8 @@ export const Snackbar = (props) => {
   }
 
   return (
-    <div className='snackbar'>
-      <p>
-        {props.message}
-      </p>
+    <div className="snackbar">
+      <p>{props.message}</p>
     </div>
   );
 };

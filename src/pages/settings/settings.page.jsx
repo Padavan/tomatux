@@ -1,112 +1,99 @@
-import React, { useRef, useState } from 'react';
-import { requestPermission, isNotificationAllowed } from '../../helpers/notification';
-import { useConfig } from '../../providers/config.provider';
-import { useToast } from '../../providers/toast.provider';
+import React, { useRef, useState } from "react";
+import { requestPermission } from "../../helpers/notification";
+import { useConfig } from "../../providers/config.provider";
+
 
 /** @typedef {import('../../types').PomodoroSettings} PomodoroSettings */
 
+
+/** @param {string} [permission] */
+const getNotificationToggleLabel = (permission) => {
+  if (permission === "granted") {
+    return "Web notifications are enabled by site settings"
+  } else if (permission == "denied") {
+    return "Web notifications are not allowed by site settings"
+  } else {
+    return "Enable web notification"
+  }
+}
+
 export const SettingsPage = () => {
+  const notificationPermissionState = Notification.permission;
   const { config, changeConfig, restore } = useConfig();
-  const [isNotificationEnabled, setIsNotificationEnabled] = useState(isNotificationAllowed());
-  const toast = useToast();
+  const [isNotificationEnabled, setIsNotificationEnabled] = useState(notificationPermissionState === "granted");
 
   const notificationButtonRef = useRef(null);
-
-  /** @param {React.FormEvent<HTMLFormElement>} event */
-  const save = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    // console.log("event", formData.getAll());
-
-    /** @type {PomodoroSettings} */ 
-    var newConfig = {
-      pomodoro: (/** @type {number} */(formData.get('pomodoro') ?? 25)),
-      pause: (/** @type {number} */(formData.get('pause') ?? 5)),
-      theme: (/** @type {'system' | 'dark' | 'light'} */(formData.get('theme') ?? 'system')),
-    };
-
-    changeConfig(newConfig);
-
-    toast.show('Settings saved');
-  }
 
   const handleNotificationEnable = async () => {
     requestPermission(() => {
       if (Notification.permission === "granted") {
         setIsNotificationEnabled(true);
       }
-    })
-  }
-
-  const showWebNotificationToggle = Notification.permission !== "denied";
+    });
+  };
 
   return (
     <section>
-      <form id="config" onSubmit={save}>
-      <div className='option'>
-        <label htmlFor={'pomodoro'}>
-          Duration of pomodoro
-        </label>
-        <input
-          id={'pomodoro'}
-          type='number'
-          name="pomodoro"
-          step={0.1}
-          min={0}
-          max={60}
-          defaultValue={config.pomodoro}
-        />
-      </div>
-  
-      <div className='option'>
-        <label htmlFor='pause'>
-          Duration of pause
-        </label>
-        <input
-          id="pause"
-          type='number'
-          name="pause"
-          step={0.1}
-          min={0}
-          max={60}
-          defaultValue={config.pause}
-        />
-      </div>
+          <label htmlFor={"pomodoro"}>Duration of pomodoro
+            <input
+              id={"pomodoro"}
+              type="number"
+              name="pomodoro"
+              step={0.1}
+              min={0}
+              max={60}
+              value={config.pomodoro}
+              onChange={e => changeConfig({ ...config, pomodoro: e.target.value })}
+            />
+          </label>
 
-      <div className='option'>
-        <label htmlFor='theme'>
-          Duration of theme
-        </label>
-        <select
-          id="theme"
-          name="theme"
-          form="config"
-          defaultValue={config.theme}
-        >
-          <option value="system">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
+          <label htmlFor="pause">Duration of pause
+            <input
+              id="pause"
+              type="number"
+              name="pause"
+              step={0.1}
+              min={0}
+              max={60}
+              value={config.pause}
+              onChange={e => changeConfig({ ...config, pause: e.target.value })}
+            />
+          </label>
 
-      {showWebNotificationToggle && (
-        <div className='option'>
-          <label>Web Notification</label>
+          <label htmlFor="theme">
+            Duration of theme
+            <select
+              id="theme"
+              name="theme"
+              value={config.theme}
+              onChange={e => changeConfig({...config, theme: e.target.value })}
+            >
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+
+        <fieldset>
+          <legend>Notifications </legend>
+          <label>
             <input
               type="checkbox"
+              role="switch"
               ref={notificationButtonRef}
               checked={isNotificationEnabled}
               onChange={() => handleNotificationEnable()}
               disabled={isNotificationEnabled}
             />
-        </div>
-      )}
-        <p>Save settings for next session or restore default settings.</p>
-        <div className='buttons'>
-          <button type="button" onClick={restore}> Restore default </button>
-          <button type="submit" className='primary'> Save </button>
-        </div>
-      </form>
+              {getNotificationToggleLabel(notificationPermissionState)}
+          </label>
+        </fieldset>
+        <fieldset>
+          <button type="button" className="outline" onClick={restore}>
+            {" "}
+            Restore default{" "}
+          </button>
+        </fieldset>
     </section>
   );
-}
+};
