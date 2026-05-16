@@ -1,8 +1,4 @@
-/***
- * @param {"pomodoro" | "pause"} stage
- * @returns {"pomodoro" | "pause"}
- **/
-function getNextStage(stage) {
+function getNextStage(stage: "pomodoro" | "pause"): "pomodoro" | "pause" {
   if (stage === "pomodoro") {
     return "pause";
   } else {

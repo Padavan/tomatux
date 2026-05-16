@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from "react";
 import "./heatmap.styles.css";
 
-/** @type {Record<string, string>} */
-var monthMapping = {
+var monthMapping: Record<string, string> = {
   "01": "Jan",
   "02": "Feb",
   "03": "Mar",
@@ -17,23 +16,17 @@ var monthMapping = {
   12: "Dec",
 };
 
-/** @type {Date} */
 const today = new Date();
 
 // TODO: use maxCount to do proper heatmap;
-/***
- * @param {number} count
- * @returns {string}
- **/
-const getHeatmapColor = (count) => {
+const getHeatmapColor = (count: number): string => {
   if (count >= 8) return "#134222";
   if (count < 8 && count >= 3) return "#216e39";
   if (count > 0 && count < 3) return "#639974";
   return "transparent";
 };
 
-/** @returns {string[]} */
-const constructYearData = () => {
+const constructYearData = (): string[] => {
   const data = [];
 
   for (let i = 0; i < 366; i++) {
@@ -44,28 +37,17 @@ const constructYearData = () => {
   return data;
 };
 
-/** @param {string} isoString */
-const getDayOfWeek = (isoString) => {
+const getDayOfWeek = (isoString: string) => {
   const d = new Date(isoString);
   return d.getDay();
 };
 
-/***
- * @param {Record<string, number>} stats
- * @param {string} date
- * @returns {number}
- **/
-function getCount(stats, date) {
+function getCount(stats: Record<string, number>, date: string): number {
   return stats[date] ?? 0;
 }
 
-/***
- * @param {string[]} days
- * @returns string[]
- **/
-function constructMonthData(days) {
-  /** @type {string[]} */
-  var arr = [];
+function constructMonthData(days: string[]): string[] {
+  var arr: string[] = [];
   days.forEach((s, index) => {
     if (index % 7 === 0) {
       arr.push(s.slice(5, 7));
@@ -85,22 +67,23 @@ function constructMonthData(days) {
   return filteredArr;
 }
 
-/** @param {number} dataStartWithDay */
-function getEmptyDays(dataStartWithDay) {
+function getEmptyDays(dataStartWithDay: number) {
   if (dataStartWithDay == 0) return [];
   return Array.from(Array(7 - dataStartWithDay).keys());
 }
 
-/** @param {{ stats: Record<string, number> }} props */
-const Heatmap = (props) => {
+type HeatmapProps = {
+  stats: Record<string, number>;
+};
+
+const Heatmap = (props: HeatmapProps) => {
   const dataList = useMemo(() => constructYearData(), []);
   const monthData = useMemo(() => constructMonthData(dataList), [dataList]);
   const dayOfWeek = useMemo(() => getDayOfWeek(dataList[0] ?? ""), [dataList]);
 
   const [hightlightedMonth, setHightlightedMonth] = useState("");
 
-  /** @param {string} month */
-  const handleHighlighMonth = (month) => {
+  const handleHighlighMonth = (month: string) => {
     setHightlightedMonth((old) => {
       if (old === month) {
         return "";
@@ -109,8 +92,6 @@ const Heatmap = (props) => {
       }
     });
   };
-
-  console.log("hightlightedMonth", hightlightedMonth);
 
   return (
     <div className="Heatmap">

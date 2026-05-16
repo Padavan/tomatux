@@ -1,4 +1,11 @@
-import React, { useState, useContext, useRef, useCallback, useEffect } from "react";
+import React, {
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+  useEffect,
+  PropsWithChildren,
+} from "react";
 import { useConfig } from "./config.provider";
 import { useToast } from "./toast.provider";
 import bellSound from "../assets/bell.wav";
@@ -19,10 +26,7 @@ const TimerContext = React.createContext({
   stop: () => {},
 });
 
-/** @typedef {'pause' | 'pomodoro'} TimerStage */
-
-/** @param {import('react').PropsWithChildren} props */
-const TimerProvider = (props) => {
+const TimerProvider = (props: PropsWithChildren) => {
   const { config } = useConfig();
   const toast = useToast();
   const [time, setTime] = useState(config.pomodoro * 60);
@@ -64,8 +68,7 @@ const TimerProvider = (props) => {
     currentTime.current = config.pomodoro * 60;
   };
 
-  /** @returns {boolean} */
-  const decrease = () => {
+  const decrease = (): boolean => {
     console.log("decrease", currentTime.current);
     if (currentTime.current > 0) {
       currentTime.current = currentTime.current - 1;

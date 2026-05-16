@@ -1,12 +1,10 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, PropsWithChildren } from "react";
 import { loadSettings, saveSettings } from "../helpers/localStorage";
-
-/** @typedef {import('../types').PomodoroSettings} PomodoroSettings */
+import { PomodoroSettings } from "../helpers/types";
 
 const savedSettings = loadSettings();
 
-/** @type {PomodoroSettings} */
-const DEFAULT_SETTINGS = { pomodoro: 25, pause: 5, theme: "system" };
+const DEFAULT_SETTINGS: PomodoroSettings = { pomodoro: 25, pause: 5, theme: "system" };
 
 const mergedSettings = {
   pomodoro: savedSettings?.pomodoro ?? DEFAULT_SETTINGS.pomodoro,
@@ -16,23 +14,17 @@ const mergedSettings = {
 
 const ConfigContext = React.createContext({
   config: mergedSettings,
-  /** @param {PomodoroSettings} _config */
-  changeConfig: (_config) => {},
+  changeConfig: (_config: PomodoroSettings) => {},
   restore: () => {},
 });
 
-/** @param {import('react').PropsWithChildren} props */
-const ConfigProvider = (props) => {
+const ConfigProvider = (props: PropsWithChildren) => {
   const [config, setConfig] = useState(mergedSettings);
 
-  const changeConfig = useCallback(
-    /** @param {PomodoroSettings} newConfig */
-    (newConfig) => {
-      saveSettings(newConfig);
-      setConfig(newConfig);
-    },
-    [],
-  );
+  const changeConfig = useCallback((newConfig: PomodoroSettings) => {
+    saveSettings(newConfig);
+    setConfig(newConfig);
+  }, []);
 
   const restore = useCallback(() => {
     saveSettings(DEFAULT_SETTINGS);

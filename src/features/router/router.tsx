@@ -1,6 +1,19 @@
-import React, { createContext, useMemo, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useMemo,
+  useContext,
+  useState,
+  useEffect,
+  PropsWithChildren,
+  ReactElement,
+} from "react";
 
-const __RouterContext = createContext(null);
+type RouterCtxType = { history: any; location: any };
+
+const __RouterContext = createContext<RouterCtxType>({
+  history: null,
+  location: null,
+});
 
 const RouterCtxProvider = __RouterContext.Provider;
 
@@ -8,26 +21,26 @@ const routerHistory = createBrowserHistory();
 
 export const useRouter = () => useContext(__RouterContext);
 
-/** @param {import('react').PropsWithChildren} props */
-export function BrowserRouter(props) {
+export function BrowserRouter(props: PropsWithChildren) {
   const [location, setLocation] = useState(() => ({ ...window.location }));
   const [ctxValue, setCtxValue] = useState(null);
 
   useEffect(() => routerHistory.listen(setLocation), []);
 
-  useEffect(() => setCtxValue({
-    history: routerHistory,
-    location
-  }), [location]);
+  useEffect(
+    () =>
+      setCtxValue({
+        history: routerHistory,
+        location,
+      }),
+    [location],
+  );
 
   return <RouterCtxProvider value={ctxValue}>{props.children}</RouterCtxProvider>;
 }
 
-
-/** @param {import('react').PropsWithChildren} props */
-export function Switch(props) {
+export function Switch(props: PropsWithChildren) {
   const routerCtx = useRouter();
-
 
   const matchedChild = useMemo(() => {
     if (!routerCtx) return null;
@@ -37,21 +50,19 @@ export function Switch(props) {
     return child || null;
   }, [routerCtx]);
 
-  return (
-    <>
-      {matchedChild}
-    </>
-  )
+  return <>{matchedChild}</>;
 }
 
+export interface RouteProps {
+  component: ReactElement;
+  path: string;
+}
 
-/** @param {import('./router.types').RouteProps} props */
-export function Route(props) {
+export function Route(props: RouteProps) {
   const routeCtx = useRouter();
   const { component: Component } = props;
   return <Component {...routeCtx} />;
 }
-
 
 export function Link(props) {
   const { to, ...rest } = props;
@@ -69,16 +80,10 @@ export function Link(props) {
     } else {
       return props.className;
     }
-
   }, [routerCtx]);
 
   return (
-    <a
-      href={to}
-      onClick={doNavigate}
-      className={classnames}
-      {...rest}
-    >
+    <a href={to} onClick={doNavigate} className={classnames} {...rest}>
       {props.children}
     </a>
   );

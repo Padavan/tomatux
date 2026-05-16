@@ -5,7 +5,6 @@ import { Switch, Route } from "../../features/router";
 import { useConfig } from "../../providers/config.provider";
 import "./layout.styles.css";
 
-
 import { TimerPage } from "../../pages/timer";
 import { SettingsPage } from "../../pages/settings";
 import { StatisticPage } from "../../pages/statistic";

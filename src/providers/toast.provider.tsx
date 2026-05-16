@@ -1,36 +1,27 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, PropsWithChildren } from "react";
 import { Snackbar } from "../features/snackbar.component";
 import { sendNotification } from "../helpers/notification";
 
 const TOAST_TIME = 3000;
 
 const ToastContext = React.createContext({
-  /**
-   * @param {string} _message
-   * @param {boolean} [_global] - send WebAPI notification as well
-   * */
-  show: (_message, _global) => {},
+  show: (_message: string, _global: boolean) => {},
 });
 
 const globalNotificationEnabled = () => Notification.permission === "granted";
 
-/** @param {import('react').PropsWithChildren} props */
-const ToastProvider = (props) => {
+const ToastProvider = (props: PropsWithChildren) => {
   const [isShown, setIsShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
-  const showToast = useCallback(
-    /** @param {string} message */
-    (message) => {
-      setToastMessage(message);
-      setIsShowToast(true);
-      if (globalNotificationEnabled()) {
-        sendNotification(message);
-      }
-      setTimeout(() => setIsShowToast(false), TOAST_TIME);
-    },
-    [],
-  );
+  const showToast = useCallback((message: string) => {
+    setToastMessage(message);
+    setIsShowToast(true);
+    if (globalNotificationEnabled()) {
+      sendNotification(message);
+    }
+    setTimeout(() => setIsShowToast(false), TOAST_TIME);
+  }, []);
 
   return (
     <ToastContext.Provider value={{ show: showToast }}>

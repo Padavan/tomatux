@@ -1,12 +1,9 @@
-/** @typedef {import('../types').PomodoroSettings} PomodoroSettings */
+import { PomodoroSettings } from "./types";
 
 const SETTINGS_KEY = "tomatux_settings";
 const STATS_KEY = "tomatux_statistics";
 
-/***
- * @returns {PomodoroSettings | null}
- **/
-export function loadSettings() {
+export function loadSettings(): PomodoroSettings | null {
   try {
     const serializedState = localStorage.getItem(SETTINGS_KEY);
     if (serializedState === null) {
@@ -19,11 +16,7 @@ export function loadSettings() {
   }
 }
 
-/***
- * @param {PomodoroSettings} state
- * @returns {boolean}
- **/
-export function saveSettings(state) {
+export function saveSettings(state: PomodoroSettings): boolean {
   let status = false;
   try {
     const serializedState = JSON.stringify(state);
@@ -37,8 +30,7 @@ export function saveSettings(state) {
   return status;
 }
 
-/** @param {string} dayString */
-export function updateStats(dayString) {
+export function updateStats(dayString: string) {
   try {
     // let data = {};
     const statsJson = localStorage.getItem(STATS_KEY);
@@ -58,8 +50,7 @@ export function updateStats(dayString) {
   }
 }
 
-/** @returns {Record<string, number>} */
-export function getStats() {
+export function getStats(): Record<string, number> {
   /** @type {Record<string, number>} */
   let stats = {};
   try {

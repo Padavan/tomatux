@@ -1,13 +1,6 @@
 import * as React from "react";
 
-/***
- * @typedef {Object} Props
- * @property {boolean} show
- * @property {string} message
- **/
-
-/** @param {Props} props */
-export const Snackbar = (props) => {
+export const Snackbar = (props: SnackbarProps) => {
   if (!props.show) {
     return null;
   }

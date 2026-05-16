@@ -13,7 +13,7 @@ export function App() {
           <TimerProvider>
             <Layout />
           </TimerProvider>
-        </ToastProvider> 
+        </ToastProvider>
       </ConfigProvider>
     </BrowserRouter>
   );

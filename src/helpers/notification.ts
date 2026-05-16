@@ -1,10 +1,8 @@
-/** @param {() => void} callback */
-export function requestPermission(callback) {
+export function requestPermission(callback: () => void) {
   Notification.requestPermission(callback);
 }
 
-/** @param {string} message */
-export function sendNotification(message) {
+export function sendNotification(message: string) {
   if (!("Notification" in window)) {
     console.error("Browser doesnt support web notification");
   } else if (Notification.permission === "granted") {

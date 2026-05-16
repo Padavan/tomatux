@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link } from "../router";
 import "./nav.styles.css";
 
-
 export function Nav() {
   return (
     <nav>

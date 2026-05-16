@@ -102,7 +102,6 @@ main {
   align-content: center;
 }
 
-
 .tPrimary {
   color: light-dark(var(--black), var(--beige));
 }
@@ -325,4 +324,3 @@ label input {
     flex: 1;
   }
 }
-
