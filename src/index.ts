@@ -7,7 +7,7 @@ import "./style.css";
 
 /** @type {Record<string, string>} */
 var serviceWorkerConfig = {};
-// register(serviceWorkerConfig);
+register(serviceWorkerConfig);
 
 const registerSW = () => {
   if ("serviceWorker" in navigator) {
@@ -32,7 +32,7 @@ const registerSW = () => {
   }
 };
 
-// registerSW();
+registerSW();
 // unregister();
 
 const rootContainer = document.getElementById("root");

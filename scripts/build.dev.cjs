@@ -9,7 +9,7 @@ const path =  require('node:path');
   /** @type {import('esbuild').BuildOptions} */
   const BUILD_OPTIONS = {
     bundle: true,
-    entryPoints: ["src/index.js"],
+    entryPoints: ["src/index.ts"],
     format: 'esm',
     loader: { '.wav': 'file' },
     logLevel: "info",

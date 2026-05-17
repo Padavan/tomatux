@@ -1,5 +1,7 @@
+export type Theme = "system" | "light" | "dark";
+
 export interface PomodoroSettings {
   pomodoro: number;
   pause: number;
-  theme: "system" | "light" | "dark";
+  theme: Theme;
 }

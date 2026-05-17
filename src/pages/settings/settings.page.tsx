@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { requestPermission } from "../../helpers/notification";
 import { useConfig } from "../../providers/config.provider";
+import { Theme } from "../../helpers/types";
 
 const getNotificationToggleLabel = (permission: string) => {
   if (permission === "granted") {
@@ -41,7 +42,7 @@ export const SettingsPage = () => {
           min={0}
           max={60}
           value={config.pomodoro}
-          onChange={(e) => changeConfig({ ...config, pomodoro: e.target.value })}
+          onChange={(e) => changeConfig({ ...config, pomodoro: Number(e.target.value) })}
         />
       </label>
 
@@ -55,7 +56,7 @@ export const SettingsPage = () => {
           min={0}
           max={60}
           value={config.pause}
-          onChange={(e) => changeConfig({ ...config, pause: e.target.value })}
+          onChange={(e) => changeConfig({ ...config, pause: Number(e.target.value) })}
         />
       </label>
 
@@ -65,7 +66,7 @@ export const SettingsPage = () => {
           id="theme"
           name="theme"
           value={config.theme}
-          onChange={(e) => changeConfig({ ...config, theme: e.target.value })}
+          onChange={(e) => changeConfig({ ...config, theme: e.target.value as Theme })}
         >
           <option value="system">System</option>
           <option value="light">Light</option>

@@ -1,1 +1,2 @@
-export { BrowserRouter, Route, Link, Redirect, Switch } from "./router";
+export { BrowserRouter } from "./router.provider";
+export { Route, Link, Redirect, Switch } from "./router.component";
